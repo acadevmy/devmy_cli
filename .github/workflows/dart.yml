@@ -29,7 +29,6 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         run: sudo apt-get install -y zip
       - name: zip
-        uses: montudor/action-zip@v1
         run: zip "{{matrix.os}}.zip" dist/devmy
       - name: compile
         run: rm dist/devmy
