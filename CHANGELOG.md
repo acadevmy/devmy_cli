@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/acadevmy/devmy_cli/compare/v1.2.0...v1.3.0) (2024-04-10)
+
+
+### Features
+
+* move compilation after version tag ([b8ac54b](https://github.com/acadevmy/devmy_cli/commit/b8ac54b002822a01c9005a49080d42c3c42cde8b))
+
 # [1.2.0](https://github.com/acadevmy/devmy_cli/compare/v1.1.0...v1.2.0) (2024-04-10)
 
 
