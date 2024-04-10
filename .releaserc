@@ -6,15 +6,7 @@
         "@semantic-release/commit-analyzer",
         "@semantic-release/release-notes-generator",
         "semantic-release-dart",
-        [
-          "@semantic-release/github",
-          {
-            "assets": [
-              { "path": "macos-latest.zip", "label": "MacOS distribution" },
-              { "path": "ubuntu-latest.zip", "label": "Linux distribution" }
-            ]
-          }
-        ],
+        "@semantic-release/github",
         [
             "@semantic-release/changelog",
             {
