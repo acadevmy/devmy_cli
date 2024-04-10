@@ -8,6 +8,7 @@ pubspec_overrides.yaml
 /tmp
 /out-tsc
 /bazel-out
+/bin/devmy.exe
 
 # Node
 /node_modules
