@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/acadevmy/devmy_cli/compare/v1.4.0...v1.5.0) (2024-04-10)
+
+
+### Features
+
+* run binaries.yml on release ([da145b6](https://github.com/acadevmy/devmy_cli/commit/da145b6a8670b07906dc4af0aeb3b863c989d0ac))
+
 # [1.4.0](https://github.com/acadevmy/devmy_cli/compare/v1.3.0...v1.4.0) (2024-04-10)
 
 
