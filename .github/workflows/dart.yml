@@ -30,7 +30,7 @@ jobs:
         with:
           args: zip "{{matrix.os}}.zip" dist/devmy
       - name: compile
-        run: rm devmy
+        run: rm dist/devmy
   release:
     runs-on: ubuntu-latest
     needs: [ compile ]
