@@ -25,10 +25,12 @@ jobs:
         run: make build_runner
       - name: compile
         run: make compile
+      - name: Install zip
+        if: matrix.os == 'ubuntu-latest'
+        run: sudo apt-get install -y zip
       - name: zip
         uses: montudor/action-zip@v1
-        with:
-          args: zip "{{matrix.os}}.zip" dist/devmy
+        run: zip "{{matrix.os}}.zip" dist/devmy
       - name: compile
         run: rm dist/devmy
   release:
