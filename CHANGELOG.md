@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/acadevmy/devmy_cli/compare/v1.3.0...v1.4.0) (2024-04-10)
+
+
+### Features
+
+* run binaries.yml on tag ([82eeb4d](https://github.com/acadevmy/devmy_cli/commit/82eeb4de2b96dff955fcd0ee79b27a64b09c2d08))
+
 # [1.3.0](https://github.com/acadevmy/devmy_cli/compare/v1.2.0...v1.3.0) (2024-04-10)
 
 
