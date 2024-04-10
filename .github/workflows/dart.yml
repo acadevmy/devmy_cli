@@ -28,7 +28,7 @@ jobs:
       - name: zip
         uses: montudor/action-zip@v1
         with:
-          args: zip "{{matrix.os}}.zip" bin/devmy
+          args: zip "{{matrix.os}}.zip" dist/devmy
       - name: compile
         run: rm devmy
   release:
