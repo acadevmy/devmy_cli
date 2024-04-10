@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/acadevmy/devmy_cli/compare/v1.5.0...v1.6.0) (2024-04-10)
+
+
+### Features
+
+* add custom environment key ([cc64d8d](https://github.com/acadevmy/devmy_cli/commit/cc64d8db37e412996fb2b5bac25c733ada536333))
+
 # [1.5.0](https://github.com/acadevmy/devmy_cli/compare/v1.4.0...v1.5.0) (2024-04-10)
 
 
