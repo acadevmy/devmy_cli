@@ -1,0 +1,35 @@
+{
+    "branches": [
+        "main",
+    ],
+    "plugins": [
+        "@semantic-release/commit-analyzer",
+        "@semantic-release/release-notes-generator",
+        "semantic-release-dart",
+        [
+          "@semantic-release/github",
+          {
+            "assets": [
+              { "path": "macos-latest.zip", "label": "MacOS distribution" },
+              { "path": "ubuntu-latest.zip", "label": "Linux distribution" }
+            ]
+          }
+        ],
+        [
+            "@semantic-release/changelog",
+            {
+                "changelogFile": "CHANGELOG.md"
+            }
+        ],
+        [
+            "@semantic-release/git",
+            {
+                "assets": [
+                    "CHANGELOG.md",
+                    "pubspec.yaml"
+                ],
+                "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+            }
+        ]
+    ]
+}
