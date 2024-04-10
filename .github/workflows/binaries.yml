@@ -3,7 +3,8 @@ name: Binaries
 on:
   push:
     branches: [ "main" ]
-
+    tags:
+      - 'v*'
 jobs:
   compile:
     if: contains(github.ref, 'refs/tags/')
