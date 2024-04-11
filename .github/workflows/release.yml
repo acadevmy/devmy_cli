@@ -1,0 +1,40 @@
+name: Release
+
+on:
+  push:
+    branches: [ "main" ]
+    tags-ignore:
+      - 'v*'
+  pull_request:
+    branches: [ "main" ]
+    tags-ignore:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: ${{ matrix.sdk }}
+
+      - name: Install dependencies
+        run: make install
+
+      - name: Build runners
+        run: make build_runner
+      - name: Run tests
+        run: make test
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "lts/*"
+
+      - name: Setup Semantic Release
+        run: npm i -g semantic-release @semantic-release/commit-analyzer @semantic-release/release-notes-generator semantic-release-dart @semantic-release/changelog @semantic-release/git @semantic-release/github
+      - name: Run Semantic Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.CIAO_GITHUB_TOKEN }}
+        run: semantic-release
