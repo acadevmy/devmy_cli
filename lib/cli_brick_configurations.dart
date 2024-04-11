@@ -11,13 +11,13 @@ final cliConfiguration = CliConfiguration(
   applications: [
     ApplicationCommand(
       name: 'angular',
-      brick: GitPath('https://gitlab.com/pillar-1/scaffold-brick'),
+      brick: GitPath('https://github.com/acadevmy/angular-application-brick'),
       description:
           'Craft Angular brilliance effortlessly! Generate a fully-equipped Angular project in your workspace, paving the way for seamless development.',
     ),
     ApplicationCommand(
       name: 'next',
-      brick: GitPath('https://gitlab.com/pillar-1/scaffold-brick'),
+      brick: GitPath('https://github.com/acadevmy/next-application-brick'),
       description:
           'Embark on your next application adventure! Generate a Next.js application in your workspace, propelling your development journey forward.',
     ),
