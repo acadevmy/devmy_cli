@@ -4,7 +4,7 @@ import 'package:devmy_cli/src/devmy_cli.dart';
 
 final cliConfiguration = CliConfiguration(
   new$: NewCommand(
-    brick: GitPath('https://gitlab.com/pillar-1/scaffold-brick'),
+    brick: GitPath('https://github.com/acadevmy/scaffold-brick'),
     description:
         'Create a Devmy masterpiece with ease! This command sets up a comprehensive scaffold, ready to unleash your creativity.',
   ),
