@@ -1,5 +1,5 @@
 #!make
-all: install build_runner test activate compile
+all: install build_runner test compile
 
 install:
 	dart pub get
