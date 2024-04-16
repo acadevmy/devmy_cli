@@ -17,6 +17,7 @@ abstract class BrickCommandWithQuestions extends BrickCommand {
     required super.brick,
     required super.description,
     required super.name,
+    super.fileConflictResolution,
     required this.questions,
   });
 
