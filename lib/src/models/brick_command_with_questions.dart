@@ -58,7 +58,7 @@ abstract class BrickCommandWithQuestions extends BrickCommand {
       for (final command in commands) {
         await runBrick(
           workingDirectory: workingDirectory,
-          brickContext: brickContext,
+          brickContext: await loadBrickContext(command.brick),
           environment: environment,
           brickCommand: command,
         );
