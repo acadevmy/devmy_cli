@@ -17,6 +17,13 @@ class CommandRunnerFactory {
   }
 
   Command<void> _createGenerateSection(CliConfiguration configuration) {
+    for (final addon in configuration.addons) {
+      addon.addons = configuration.addons;
+    }
+    for (final application in configuration.applications) {
+      application.addons = configuration.addons;
+    }
+
     return NodeCommand(
         name: 'generate',
         description:
