@@ -20,6 +20,34 @@ final cliConfiguration = CliConfiguration(
       brick: GitPath('https://github.com/acadevmy/next-application-brick'),
       description:
           'Embark on your next application adventure! Generate a Next.js application in your workspace, propelling your development journey forward.',
+      questions: [
+        Question(
+            isOptional: true,
+            prompt:
+                'Which styling system would you like to use in your Next.js project?',
+            addonNames: ['next/tailwind']),
+        Question(
+            isOptional: true,
+            prompt:
+                'Which state management solution would you like to use in your Next.js project?',
+            addonNames: ['next/zustand']),
+      ],
+    ),
+    ApplicationCommand(
+      brick: GitPath("https://github.com/acadevmy/directus-application-brick"),
+      description: "Directus",
+      name: "directus",
+    ),
+  ],
+  addons: [
+    AddonCommand(
+        name: 'next/tailwind',
+        brick: GitPath("https://github.com/acadevmy/next-tailwind-addon-brick"),
+        description: "Enhance your Next.js project with Tailwind CSS"),
+    AddonCommand(
+      name: 'next/zustand',
+      brick: GitPath("https://github.com/acadevmy/next_zustand_addon_brick"),
+      description: "Integrating Zustand with Next.js",
     ),
   ],
 );
