@@ -1,3 +1,22 @@
+# [1.7.0](https://github.com/acadevmy/devmy_cli/compare/v1.6.0...v1.7.0) (2024-04-18)
+
+
+### Bug Fixes
+
+* brick variables type number ([bb3cc78](https://github.com/acadevmy/devmy_cli/commit/bb3cc78b820885c5ea5468d7abe6ef9d7fe06f99))
+* fixed brickContext of questions ([3ea4280](https://github.com/acadevmy/devmy_cli/commit/3ea428012c711c96d0457f61c3dd29fcadcbaabd))
+* propagated addons in configuration items ([4bb670e](https://github.com/acadevmy/devmy_cli/commit/4bb670e7a041e9e3d4f984b06ff4b61dfc6c0668))
+* remove active from make all ([e27f775](https://github.com/acadevmy/devmy_cli/commit/e27f775df675d21d02bc040fa8494fe70aa614eb))
+
+
+### Features
+
+* add configurations of next/tailwind, next/zustand and directus bricks ([7d4bbde](https://github.com/acadevmy/devmy_cli/commit/7d4bbde360dd2e1b3059a0a9b80a9a1941a5d18b))
+* add github url of next and angular bricks ([0829808](https://github.com/acadevmy/devmy_cli/commit/0829808fea60ebbce5d9ce289e80e7aa79672155))
+* add github url of scaffold brick ([83d9db8](https://github.com/acadevmy/devmy_cli/commit/83d9db884c8809356874594a1c4a7ecb9fb28cd0))
+* custom fileConflictResolution ([6524472](https://github.com/acadevmy/devmy_cli/commit/65244724db49ca82fc3f64d1c59234a88d57d49f))
+* initial scaffold ([4984cdb](https://github.com/acadevmy/devmy_cli/commit/4984cdbef89d18c71495868d53548e377962cb68))
+
 # [1.6.0](https://github.com/acadevmy/devmy_cli/compare/v1.5.0...v1.6.0) (2024-04-10)
 
 
