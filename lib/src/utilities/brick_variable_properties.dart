@@ -1,8 +1,7 @@
 import 'package:devmy_cli/src/utilities/create_mustache_array.dart';
+import 'package:devmy_cli/src/utilities/interact_validators.dart';
 import 'package:interact/interact.dart';
 import 'package:mason/mason.dart';
-
-import 'interact_validators.dart';
 
 extension BrickVariablePropertiesPrompt on BrickVariableProperties {
   dynamic input() {
@@ -33,7 +32,7 @@ extension BrickVariablePropertiesPrompt on BrickVariableProperties {
     if (type == BrickVariableType.number) {
       final input = Input(
         prompt: prompt,
-        defaultValue: defaultValue,
+        defaultValue: defaultValue != null ? '$defaultValue' : null,
         validator: InteractValidators.isNumber,
       ).interact();
 
@@ -47,6 +46,7 @@ extension BrickVariablePropertiesPrompt on BrickVariableProperties {
         validator: InteractValidators.isNotBlank,
       ).interact();
     }
+
     if (type == BrickVariableType.boolean) {
       return Confirm(
         prompt: prompt,

@@ -5,6 +5,7 @@ class AddonCommand extends BrickCommandWithQuestions {
     required super.name,
     required super.brick,
     required super.description,
+    super.fileConflictResolution,
     super.questions = const [],
   });
 }

@@ -17,11 +17,13 @@ abstract class BrickCommand extends Command<void> {
   @override
   final String description;
   final GitPath brick;
+  final FileConflictResolution fileConflictResolution;
 
   BrickCommand({
     required this.description,
     required this.name,
     required this.brick,
+    this.fileConflictResolution = FileConflictResolution.overwrite,
   });
 
   @override
@@ -79,7 +81,7 @@ abstract class BrickCommand extends Command<void> {
 
     final generated = await brickContext.generator.generate(
       target,
-      fileConflictResolution: FileConflictResolution.prompt,
+      fileConflictResolution: brickCommand.fileConflictResolution,
       vars: environment,
     );
 

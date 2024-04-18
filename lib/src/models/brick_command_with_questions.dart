@@ -17,6 +17,7 @@ abstract class BrickCommandWithQuestions extends BrickCommand {
     required super.brick,
     required super.description,
     required super.name,
+    super.fileConflictResolution,
     required this.questions,
   });
 
@@ -57,7 +58,7 @@ abstract class BrickCommandWithQuestions extends BrickCommand {
       for (final command in commands) {
         await runBrick(
           workingDirectory: workingDirectory,
-          brickContext: brickContext,
+          brickContext: await loadBrickContext(command.brick),
           environment: environment,
           brickCommand: command,
         );
