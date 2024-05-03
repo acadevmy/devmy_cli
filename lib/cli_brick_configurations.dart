@@ -6,20 +6,20 @@ final cliConfiguration = CliConfiguration(
   new$: NewCommand(
     brick: GitPath('https://github.com/acadevmy/scaffold-brick'),
     description:
-        'Create a Devmy masterpiece with ease! This command sets up a comprehensive scaffold, ready to unleash your creativity.',
+        'Easily create a Devmy scaffold masterpiece',
   ),
   applications: [
     ApplicationCommand(
       name: 'angular',
       brick: GitPath('https://github.com/acadevmy/angular-application-brick'),
       description:
-          'Craft Angular brilliance effortlessly! Generate a fully-equipped Angular project in your workspace, paving the way for seamless development.',
+          'Generate a fully-equipped Angular project in your workspace',
     ),
     ApplicationCommand(
       name: 'next',
       brick: GitPath('https://github.com/acadevmy/next-application-brick'),
       description:
-          'Embark on your next application adventure! Generate a Next.js application in your workspace, propelling your development journey forward.',
+          'Generate a fully-equipped Nextjs project in your workspace',
       questions: [
         Question(
             isOptional: true,
@@ -34,9 +34,9 @@ final cliConfiguration = CliConfiguration(
       ],
     ),
     ApplicationCommand(
-      brick: GitPath("https://github.com/acadevmy/directus-application-brick"),
-      description: "Directus",
       name: "directus",
+      brick: GitPath("https://github.com/acadevmy/directus-application-brick"),
+      description: "Generate a fully-equipped Nextjs project in your workspace",
     ),
   ],
   addons: [
