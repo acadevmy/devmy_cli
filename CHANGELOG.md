@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/acadevmy/devmy_cli/compare/v1.7.0...v1.8.0) (2024-05-10)
+
+
+### Features
+
+* added configurations for nextjs ([1179c48](https://github.com/acadevmy/devmy_cli/commit/1179c485e9873537506a622dd311e04a1bc83683))
+
 # [1.7.0](https://github.com/acadevmy/devmy_cli/compare/v1.6.0...v1.7.0) (2024-04-18)
 
 

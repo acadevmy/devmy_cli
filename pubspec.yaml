@@ -1,6 +1,6 @@
 name: devmy_cli
 description: The Devmy CLI is a command-line interface tool that you use to initialize, develop, scaffold, and maintain Devmy applications directly from a command shell.
-version: 1.7.0
+version: 1.8.0
 
 environment:
   sdk: ^3.0.0
