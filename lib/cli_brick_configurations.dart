@@ -38,6 +38,11 @@ final cliConfiguration = CliConfiguration(
       brick: GitPath("https://github.com/acadevmy/directus-application-brick"),
       description: "Generate a fully-equipped Nextjs project in your workspace",
     ),
+    ApplicationCommand(
+      name: "nestjs",
+      brick: GitPath("https://github.com/acadevmy/nestjs-application-brick"),
+      description: "Generate a fully-equipped NestJS project in your workspace",
+    ),
   ],
   addons: [
     AddonCommand(
