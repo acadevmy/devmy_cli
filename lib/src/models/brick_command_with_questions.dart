@@ -13,13 +13,13 @@ abstract class BrickCommandWithQuestions extends BrickCommand {
   final List<Question> questions;
   late List<AddonCommand> addons;
 
-  BrickCommandWithQuestions({
-    required super.brick,
-    required super.description,
-    required super.name,
-    super.fileConflictResolution,
-    required this.questions,
-  });
+  BrickCommandWithQuestions(
+      {required super.brick,
+      required super.description,
+      required super.name,
+      super.fileConflictResolution,
+      required this.questions,
+      super.aliases = const []});
 
   @override
   FutureOr<void> runBrick({

@@ -13,9 +13,10 @@ final cliConfiguration = CliConfiguration(
       brick: GitPath('https://github.com/acadevmy/angular-application-brick'),
       description:
           'Generate a fully-equipped Angular project in your workspace',
+      aliases: ['ng'],
     ),
     ApplicationCommand(
-      name: 'next',
+      name: 'nextjs',
       brick: GitPath('https://github.com/acadevmy/next-application-brick'),
       description: 'Generate a fully-equipped Nextjs project in your workspace',
       questions: [
@@ -32,17 +33,20 @@ final cliConfiguration = CliConfiguration(
           addonNames: ['next/zustand'],
         ),
       ],
+      aliases: ['next'],
     ),
     ApplicationCommand(
       name: "directus",
       brick: GitPath("https://github.com/acadevmy/directus-application-brick"),
-      description: "Generate a fully-equipped Nextjs project in your workspace",
+      description:
+          "Generate a fully-equipped Directus project in your workspace",
     ),
     ApplicationCommand(
-      name: "nestjs",
-      brick: GitPath("https://github.com/acadevmy/nestjs-application-brick"),
-      description: "Generate a fully-equipped NestJS project in your workspace",
-    ),
+        name: "nestjs",
+        brick: GitPath("https://github.com/acadevmy/nestjs-application-brick"),
+        description:
+            "Generate a fully-equipped NestJS project in your workspace",
+        aliases: ['nest']),
   ],
   addons: [
     AddonCommand(

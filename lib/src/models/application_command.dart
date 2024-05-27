@@ -5,12 +5,12 @@ import 'package:mason/mason.dart';
 import 'package:devmy_cli/src/constants/constants.dart';
 
 class ApplicationCommand extends BrickCommandWithQuestions {
-  ApplicationCommand({
-    required super.name,
-    required super.brick,
-    required super.description,
-    super.questions = const [],
-  });
+  ApplicationCommand(
+      {required super.name,
+      required super.brick,
+      required super.description,
+      super.questions = const [],
+      super.aliases = const []});
 
   @override
   Directory getWorkingDirectory({

@@ -18,12 +18,15 @@ abstract class BrickCommand extends Command<void> {
   final String description;
   final GitPath brick;
   final FileConflictResolution fileConflictResolution;
+  @override
+  final List<String> aliases;
 
   BrickCommand({
     required this.description,
     required this.name,
     required this.brick,
     this.fileConflictResolution = FileConflictResolution.overwrite,
+    this.aliases = const [],
   });
 
   @override
