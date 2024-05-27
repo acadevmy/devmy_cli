@@ -1,3 +1,10 @@
+# [1.10.0](https://github.com/acadevmy/devmy_cli/compare/v1.9.0...v1.10.0) (2024-05-27)
+
+
+### Features
+
+* add aliases to commands ([e9b73c8](https://github.com/acadevmy/devmy_cli/commit/e9b73c8fd6dce6824fa3f2de42e18978c407a934))
+
 # [1.9.0](https://github.com/acadevmy/devmy_cli/compare/v1.8.0...v1.9.0) (2024-05-27)
 
 
