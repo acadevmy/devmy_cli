@@ -1,3 +1,10 @@
+## [1.10.1](https://github.com/acadevmy/devmy_cli/compare/v1.10.0...v1.10.1) (2024-05-27)
+
+
+### Bug Fixes
+
+* mason version ([754534e](https://github.com/acadevmy/devmy_cli/commit/754534e4756027b9768e581cb7285311f8e77321))
+
 # [1.10.0](https://github.com/acadevmy/devmy_cli/compare/v1.9.0...v1.10.0) (2024-05-27)
 
 
