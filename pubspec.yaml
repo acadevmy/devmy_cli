@@ -7,7 +7,7 @@ environment:
 
 dependencies:
   args: ^2.4.2
-  mason: any
+  mason: "0.1.0-dev.53"
   interact: ^2.2.0
   chalkdart: ^2.2.1
   json_annotation: ^4.8.1
