@@ -11,3 +11,5 @@ test:
 	dart run test
 activate:
 	dart pub global activate -s path . --overwrite
+deactivate:
+	dart pub global deactivate devmy_cli
