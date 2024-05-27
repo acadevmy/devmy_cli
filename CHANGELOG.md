@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/acadevmy/devmy_cli/compare/v1.8.0...v1.9.0) (2024-05-27)
+
+
+### Features
+
+* add nestjs brick ([599afb9](https://github.com/acadevmy/devmy_cli/commit/599afb94c1927d747ac9a512b0733890b408acdc))
+
 # [1.8.0](https://github.com/acadevmy/devmy_cli/compare/v1.7.0...v1.8.0) (2024-05-10)
 
 
