@@ -1,3 +1,10 @@
+# [1.12.0](https://github.com/acadevmy/devmy_cli/compare/v1.11.0...v1.12.0) (2024-05-27)
+
+
+### Features
+
+* update dependencies ([4a69b27](https://github.com/acadevmy/devmy_cli/commit/4a69b2767c68fe1cc67c629928915706344b63f1))
+
 # [1.11.0](https://github.com/acadevmy/devmy_cli/compare/v1.10.1...v1.11.0) (2024-05-27)
 
 
