@@ -1,3 +1,10 @@
+# [1.11.0](https://github.com/acadevmy/devmy_cli/compare/v1.10.1...v1.11.0) (2024-05-27)
+
+
+### Features
+
+* add deactivate cli command ([ee7693e](https://github.com/acadevmy/devmy_cli/commit/ee7693ec6072a4eb48b9417bcfb86a3c4a53f9b8))
+
 ## [1.10.1](https://github.com/acadevmy/devmy_cli/compare/v1.10.0...v1.10.1) (2024-05-27)
 
 
