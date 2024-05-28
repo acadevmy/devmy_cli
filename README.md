@@ -9,9 +9,19 @@ and maintain Devmy applications directly from a command shell.
 
 ### Requirements
 
+- [Dart SDK](https://dart.dev/get-dart) 
 - Compatible Operating System: MacOS, Linux
 
 ### Installation Steps
+
+#### Dart Activate
+Install with dart tools:
+
+```dart
+dart pub global activate --source git https://github.com/acadevmy/devmy_cli
+```
+
+#### Install executable binaries
 
 1. Navigate to the [latest release](https://github.com/acadevmy/devmy_cli/releases/latest) on GitHub.
 
