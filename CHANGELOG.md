@@ -1,3 +1,10 @@
+# [1.14.0](https://github.com/acadevmy/devmy_cli/compare/v1.13.0...v1.14.0) (2024-05-29)
+
+
+### Features
+
+* rollback mason to dev.54 ([d41e0b0](https://github.com/acadevmy/devmy_cli/commit/d41e0b0a69bb39682ec30970ab5170d34e564a78))
+
 # [1.13.0](https://github.com/acadevmy/devmy_cli/compare/v1.12.0...v1.13.0) (2024-05-29)
 
 
