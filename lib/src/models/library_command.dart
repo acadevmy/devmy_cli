@@ -36,4 +36,15 @@ class LibraryCommand extends BrickCommand {
 
     return directory;
   }
+
+  @override
+  String getCommitMessage({
+    required Map<String, dynamic> environment,
+    required BrickCommand brickCommand,
+  }) {
+    final libraryName =
+        (environment[kBrickLibraryNameEnvironmentVariable] as String).paramCase;
+
+    return 'chore($libraryName): added ${brickCommand.name}';
+  }
 }

@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:devmy_cli/src/models/brick_command.dart';
 import 'package:devmy_cli/src/models/brick_command_with_questions.dart';
 import 'package:mason/mason.dart';
 
@@ -35,5 +36,17 @@ class ApplicationCommand extends BrickCommandWithQuestions {
     );
 
     return directory;
+  }
+
+  @override
+  String getCommitMessage({
+    required Map<String, dynamic> environment,
+    required BrickCommand brickCommand,
+  }) {
+    final applicationName =
+        (environment[kBrickApplicationNameEnvironmentVariable] as String)
+            .paramCase;
+
+    return 'chore($applicationName): added ${brickCommand.name}';
   }
 }

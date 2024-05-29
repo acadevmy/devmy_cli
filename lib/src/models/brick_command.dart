@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:args/command_runner.dart';
 import 'package:chalkdart/chalk.dart';
+import 'package:devmy_cli/devmy_cli.dart';
 import 'package:devmy_cli/src/models/brick_context.dart';
 import 'package:devmy_cli/src/utilities/utilities.dart';
 import 'package:interact/interact.dart';
@@ -28,31 +29,6 @@ abstract class BrickCommand extends Command<void> {
     this.fileConflictResolution = FileConflictResolution.overwrite,
     this.aliases = const [],
   });
-
-  @override
-  FutureOr<void> run() async {
-    final brickContext = await loadBrickContext(brick);
-
-    final environment = await loadEnvironment();
-
-    print('prompt command variables');
-    await promptBundleVariables(
-      environment: environment,
-      bundle: brickContext.bundle,
-    );
-    print('prompt command variables');
-    await promptCommandVariables(environment: environment);
-
-    Directory workingDirectory =
-        await getWorkingDirectory(environment: environment);
-
-    await runBrick(
-      workingDirectory: workingDirectory,
-      brickContext: brickContext,
-      environment: environment,
-      brickCommand: this,
-    );
-  }
 
   FutureOr<Directory> getWorkingDirectory({
     required Map<String, dynamic> environment,
@@ -96,6 +72,13 @@ abstract class BrickCommand extends Command<void> {
     await brickContext.generator.hooks.postGen(
       vars: environment,
       workingDirectory: workingDirectory.path,
+    );
+
+    await runPnpmInstall();
+
+    await _commitChanges(
+      brickCommand: brickCommand,
+      environment: environment,
     );
   }
 
@@ -147,5 +130,55 @@ abstract class BrickCommand extends Command<void> {
     for (final entry in updates.entries) {
       environment.update(entry.key, (_) => entry.value);
     }
+  }
+
+  String getCommitMessage({
+    required Map<String, dynamic> environment,
+    required BrickCommand brickCommand,
+  });
+
+  Future<void> runPnpmInstall() async {
+    print('📦 Running pnpm i');
+    try {
+      await Process.run('pnpm', ['i']);
+      print(chalk.green('📦 pnpm configured successfully 🚀'));
+    } catch (_) {
+      print(chalk.yellowBright('⚠️ failed pnpm i'));
+    }
+  }
+
+  Future<void> _commitChanges({
+    required Map<String, dynamic> environment,
+    required BrickCommand brickCommand,
+  }) async {
+    print('📚 Staging initial files...');
+    Directory cwd = Directory.current;
+    String? workspaceName = environment[kBrickWorkspaceNameEnvironmentVariable];
+    
+    if (workspaceName != null) {
+      cwd = Directory.fromUri(cwd.uri.resolve(workspaceName.paramCase));
+    }
+
+    await Process.run(
+      'git',
+      ['add', '.'],
+      workingDirectory: cwd.path,
+    );
+
+    final commitMessage = brickCommand.getCommitMessage(
+      environment: environment,
+      brickCommand: brickCommand,
+    );
+
+    print(
+      '📚 Committing "$commitMessage"...',
+    );
+
+    await Process.run(
+      'git',
+      ['commit', '-m', '"$commitMessage"'],
+    );
+
+    print(chalk.green('📚 Git commited successfully! 🚀'));
   }
 }

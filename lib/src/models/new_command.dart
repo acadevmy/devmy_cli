@@ -17,6 +17,31 @@ class NewCommand extends BrickCommand {
           brick: brick,
         );
 
+ @override
+  FutureOr<void> run() async {
+    final brickContext = await loadBrickContext(brick);
+
+    final environment = await loadEnvironment();
+
+    print('prompt command variables');
+    await promptBundleVariables(
+      environment: environment,
+      bundle: brickContext.bundle,
+    );
+    print('prompt command variables');
+    await promptCommandVariables(environment: environment);
+
+    Directory workingDirectory =
+        await getWorkingDirectory(environment: environment);
+
+    await runBrick(
+      workingDirectory: workingDirectory,
+      brickContext: brickContext,
+      environment: environment,
+      brickCommand: this,
+    );
+  }
+  
   @override
   FutureOr<Directory> getWorkingDirectory({
     required Map<String, dynamic> environment,
@@ -38,5 +63,17 @@ class NewCommand extends BrickCommand {
     );
 
     return directory;
+  }
+
+  @override
+  String getCommitMessage({
+    required Map<String, dynamic> environment,
+    required BrickCommand brickCommand,
+  }) {
+    final workspaceName =
+        (environment[kBrickWorkspaceNameEnvironmentVariable] as String)
+            .paramCase;
+
+    return 'chore($workspaceName): added ${brickCommand.name}';
   }
 }
