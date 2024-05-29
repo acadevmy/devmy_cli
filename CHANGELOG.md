@@ -1,3 +1,10 @@
+# [1.13.0](https://github.com/acadevmy/devmy_cli/compare/v1.12.0...v1.13.0) (2024-05-29)
+
+
+### Features
+
+* updated mason ([b66c64e](https://github.com/acadevmy/devmy_cli/commit/b66c64e66bba62b1ecdc764f71d858a4142acaa9))
+
 # [1.12.0](https://github.com/acadevmy/devmy_cli/compare/v1.11.0...v1.12.0) (2024-05-27)
 
 
