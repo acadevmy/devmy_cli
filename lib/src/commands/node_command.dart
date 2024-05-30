@@ -10,9 +10,13 @@ class NodeCommand extends Command<void> {
   @override
   final String description;
 
+  @override
+  final List<String> aliases;
+
   NodeCommand({
     required this.name,
     required this.description,
+    this.aliases = const [],
     List<Command<void>> children = const [],
   }) {
     addSubcommands(children);

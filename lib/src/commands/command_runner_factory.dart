@@ -1,4 +1,6 @@
 import 'package:args/command_runner.dart';
+import 'package:chalkdart/chalkstrings.dart';
+import 'package:devmy_cli/src/commands/brick_command.dart';
 import 'package:devmy_cli/src/commands/node_command.dart';
 import 'package:devmy_cli/src/models/models.dart';
 
@@ -10,42 +12,53 @@ class CommandRunnerFactory {
       suggestionDistanceLimit: 3,
     );
 
-    commandRunner.addCommand(configuration.new$);
+    commandRunner.addCommand(BrickCommand(
+        brickCommand: configuration.new$, addons: configuration.addons));
     commandRunner.addCommand(_createGenerateSection(configuration));
 
     return commandRunner;
   }
 
   Command<void> _createGenerateSection(CliConfiguration configuration) {
-    for (final addon in configuration.addons) {
-      addon.addons = configuration.addons;
-    }
-    for (final application in configuration.applications) {
-      application.addons = configuration.addons;
-    }
+    final addons = configuration.addons;
+
+    final applicationCommands = configuration.applications
+        .map((brickCommandDefinition) =>
+            BrickCommand(brickCommand: brickCommandDefinition, addons: addons))
+        .toList();
+
+    final libraryCommands = configuration.libraries
+        .map((brickCommandDefinition) =>
+            BrickCommand(brickCommand: brickCommandDefinition, addons: addons))
+        .toList();
+
+    final addonCommands = configuration.addons
+        .map((brickCommandDefinition) =>
+            BrickCommand(brickCommand: brickCommandDefinition, addons: addons))
+        .toList();
 
     return NodeCommand(
-        name: 'generate',
+        name: chalk.bold('generate'),
+        aliases: ['g', 'gen', 'generate'],
         description:
-            "Unlock the power to create! Generate various components of your project with ease using this versatile command. Explore options like applications, addons, presets and libraries to kickstart your development journey.",
+            "Generate various components to kickstart your development journey",
         children: [
           NodeCommand(
-            name: 'application',
-            description:
-                "Craft your Devmy project's foundation! Use this command to generate different types of applications, whether it's Angular, Next.js, or beyond. Seamlessly set up the backbone of your project with just a few simple commands.",
-            children: configuration.applications,
+            name: chalk.bold('application'),
+            aliases: ['a', 'app'],
+            description: "Create a workspace application",
+            children: applicationCommands,
           ),
           NodeCommand(
-            name: 'library',
-            description:
-                "Empower your project with reusable components! With this command, generate libraries tailored to your project's needs. Streamline development by creating shareable components that enhance collaboration and maintainability.",
-            children: configuration.libraries,
+            name: chalk.bold('library'),
+            aliases: ['l', 'lib'],
+            description: "Create a workspace shareable library",
+            children: libraryCommands,
           ),
           NodeCommand(
-            name: 'addon',
-            description:
-                "Enhance your project's capabilities! Utilize this command to seamlessly integrate addons like Themes or State Manager Scaffolds into your applications. Elevate your project with advanced functionalities without breaking a sweat.",
-            children: configuration.addons,
+            name: chalk.bold('addon'),
+            description: "Integrate addons into your projects",
+            children: addonCommands,
           ),
         ]);
   }

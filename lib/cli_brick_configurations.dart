@@ -1,21 +1,22 @@
+import 'package:devmy_cli/src/models/new_definition.dart';
 import 'package:mason/mason.dart';
 
 import 'package:devmy_cli/src/devmy_cli.dart';
 
 final cliConfiguration = CliConfiguration(
-  new$: NewCommand(
+  new$: NewCommandDefinition(
     brick: GitPath('https://github.com/acadevmy/scaffold-brick'),
     description: 'Easily create a Devmy scaffold masterpiece',
   ),
   applications: [
-    ApplicationCommand(
+    ApplicationCommandDefinition(
       name: 'angular',
       brick: GitPath('https://github.com/acadevmy/angular-application-brick'),
       description:
           'Generate a fully-equipped Angular project in your workspace',
       aliases: ['ng'],
     ),
-    ApplicationCommand(
+    ApplicationCommandDefinition(
       name: 'nextjs',
       brick: GitPath('https://github.com/acadevmy/next-application-brick'),
       description: 'Generate a fully-equipped Nextjs project in your workspace',
@@ -35,13 +36,13 @@ final cliConfiguration = CliConfiguration(
       ],
       aliases: ['next'],
     ),
-    ApplicationCommand(
+    ApplicationCommandDefinition(
       name: "directus",
       brick: GitPath("https://github.com/acadevmy/directus-application-brick"),
       description:
           "Generate a fully-equipped Directus project in your workspace",
     ),
-    ApplicationCommand(
+    ApplicationCommandDefinition(
         name: "nestjs",
         brick: GitPath("https://github.com/acadevmy/nestjs-application-brick"),
         description:
@@ -49,12 +50,12 @@ final cliConfiguration = CliConfiguration(
         aliases: ['nest']),
   ],
   addons: [
-    AddonCommand(
+    AddonCommandDefinition(
       name: 'next/zustand',
       brick: GitPath("https://github.com/acadevmy/next-zustand-addon-brick"),
       description: "Integrating Zustand with Next.js",
     ),
-    AddonCommand(
+    AddonCommandDefinition(
       name: 'next/shadcnui',
       brick: GitPath("https://github.com/acadevmy/next-shacnui-addon-brick"),
       description: "Customizable UI for Next.js with ShadcnUI.",
