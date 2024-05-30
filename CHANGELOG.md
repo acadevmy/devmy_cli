@@ -1,3 +1,10 @@
+# [1.15.0](https://github.com/acadevmy/devmy_cli/compare/v1.14.0...v1.15.0) (2024-05-30)
+
+
+### Features
+
+* use pnpm and git after generation ([7b00f3d](https://github.com/acadevmy/devmy_cli/commit/7b00f3d55398e6f198110ea8c72dfb15fb9b647e))
+
 # [1.14.0](https://github.com/acadevmy/devmy_cli/compare/v1.13.0...v1.14.0) (2024-05-29)
 
 
