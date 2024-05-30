@@ -1,7 +1,7 @@
-import 'package:devmy_cli/src/models/brick_command_with_questions.dart';
+import 'brick_command_definition.dart';
 
-class AddonCommand extends BrickCommandWithQuestions {
-  AddonCommand({
+class AddonCommandDefinition extends BrickCommandDefinition {
+  AddonCommandDefinition({
     required super.name,
     required super.brick,
     required super.description,
