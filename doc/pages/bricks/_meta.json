@@ -1,0 +1,8 @@
+{
+  "scaffold": "Scaffold",
+  "angular": "Angular",
+  "cypress": "Cypress",
+  "directus": "Directus",
+  "nest": "NestJS",
+  "next": "NextJS"
+}

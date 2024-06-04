@@ -1,0 +1,30 @@
+{
+  "name": "devmy-cli-doc",
+  "version": "0.0.1",
+  "description": "Devmy CLI Documentation",
+  "scripts": {
+    "dev": "next dev --port 4000",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acadevmy/devmy_cli"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/acadevmy/devmy_cli/issues"
+  },
+  "homepage": "https://github.com/acadevmy/devmy_cli#readme",
+  "dependencies": {
+    "next": "^13.0.6",
+    "nextra": "latest",
+    "nextra-theme-docs": "latest",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "18.11.10",
+    "typescript": "^4.9.3"
+  }
+}

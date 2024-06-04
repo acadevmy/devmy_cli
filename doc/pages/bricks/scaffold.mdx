@@ -1,0 +1,55 @@
+# Scaffold
+
+It allows you to create an NX monorepo, into which applications and libraries are inserted.
+
+## Advantages
+
+### Scripts
+
+The scripts have been configured so that all applications and libraries within the monorepo can be started or built
+at the same time.
+
+| Script | Description |
+| ---- | ---- |
+| dev | Run in developer mode |
+| start | Run in production mode |
+| build | Runs the build |
+| lint | Find all lint problems |
+| lint:fix | Find all lint problems and solve them |
+| test | Runs unit tests in watch mode |
+| test:headless | Runs the unit tests and prints the result |
+| e2e | Runs E2E tests in watch mode |
+| e2e:headless | Runs E2E tests and prints the result |
+
+### Cache
+
+Devmy CLI simplifies cache management for applications and libraries. This means it won't be necessary
+manually configure cache policies.
+
+### Dotenv Vault
+
+During the initialization of the scaffold, the setup of [Dotenv Vault](https://github.com/dotenv-org/dotenv-vault) is also started
+A tool that allows you to synchronize environment variables between machines, environments and teams.
+
+### Semantic Release
+
+The [Semantic Release](https://github.com/semantic-release/semantic-release) configuration for versioning is already present in the scaffold
+of the project.
+
+### Husky
+
+We have also configured [Husky](https://typicode.github.io/husky/) for commit linting.
+
+## Get Started
+
+To create scaffolding for a project you need to use the Devmy CLI and launch the command:
+
+```bash copy
+devmy new
+```
+
+## Variables
+
+You can configure the initial scaffold with the following parameters:
+
+- **Workspace name**: The name of the scaffold
