@@ -1,3 +1,10 @@
+# [1.17.0](https://github.com/acadevmy/devmy_cli/compare/v1.16.1...v1.17.0) (2024-06-06)
+
+
+### Features
+
+* add utilities commands ([98f6176](https://github.com/acadevmy/devmy_cli/commit/98f6176a9d02682ead1681534fd6284aa16f9f96))
+
 ## [1.16.1](https://github.com/acadevmy/devmy_cli/compare/v1.16.0...v1.16.1) (2024-06-06)
 
 
