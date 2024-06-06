@@ -43,11 +43,17 @@ final cliConfiguration = CliConfiguration(
           "Generate a fully-equipped Directus project in your workspace",
     ),
     ApplicationCommandDefinition(
-        name: "nestjs",
-        brick: GitPath("https://github.com/acadevmy/nestjs-application-brick"),
-        description:
-            "Generate a fully-equipped NestJS project in your workspace",
-        aliases: ['nest']),
+      name: "nestjs",
+      brick: GitPath("https://github.com/acadevmy/nestjs-application-brick"),
+      description: "Generate a fully-equipped NestJS project in your workspace",
+      aliases: ['nest'],
+    ),
+    ApplicationCommandDefinition(
+      name: "cypress",
+      brick: GitPath("https://github.com/acadevmy/cypress-application-brick"),
+      description: "Generate an armored Cypress project in your workspace",
+      aliases: ['cy', 'cipresso'],
+    ),
   ],
   addons: [
     AddonCommandDefinition(
