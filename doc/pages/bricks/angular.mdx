@@ -1,5 +1,124 @@
-import Wip from '../../components/Wip.tsx';
-
 # Angular
 
-<Wip />
+The Devmy CLI provides a set of predefined configurations that will allow you to start developing right away.
+
+## Get Started
+
+To create a new Angular application, use the following Devmy CLI command:
+
+```bash copy
+devmy generate application angular
+```
+
+## Variables
+
+You can configure the initial application with the following parameters:
+
+- **Application name**: The name of the application
+- **Prefix**: The prefix to apply to generated selectors for the project.
+- **Port**: Port to listen on.
+
+## Advantages
+
+### Ngrx
+
+The Angular application created with the Devmy CLI comes with [NgRx](https://ngrx.io/) preinstalled and configured,
+including the Store, DevTools, and Effects. NgRx is a state management library inspired by Redux, which simplifies state management
+in complex Angular applications.
+
+### Lodash
+
+The Angular application includes [lodash-es](https://lodash.com/) as a preinstalled dependency, a JavaScript utility library. Lodash-ES
+is a modular version of Lodash, designed to be used with ECMAScript (ES) modules.
+
+### I18n
+
+The Angular application created with the Devmy CLI comes with preconfigured support for internationalization (i18n) using
+[ngx-translate](https://github.com/ngx-translate/core) and the
+[@larscom/ngx-translate-module-loader](https://github.com/larscom/ngx-translate-module-loader) plugin. This advanced setup
+allows for flexible and highly configurable translation management, organizing translation files into folders and using separate
+namespaces to avoid conflicts between translation keys.
+
+With this configuration, translation files should be organized into folders by module or feature. For example, the folder structure could be:
+
+```bash
+/assets
+  /i18n
+    /common
+      /en.json
+      /it.json
+    /feature1
+      /en.json
+      /it.json
+    /en.json
+    /it.json
+```
+
+### Test
+
+The Angular application created with the Devmy CLI is preconfigured to use Jest as the unit testing framework, replacing Karma and Jasmine.
+Jest is a modern and versatile testing library that offers superior performance, simpler setup, and advanced features like snapshot testing.
+
+#### Why Jest?
+Using Jest provides numerous advantages over Karma and Jasmine:
+
+- **Speed**: Jest is known for its speed and reliability, thanks to its ability to run tests in parallel and built-in support for watch mode.
+- **Simplicity**: Jest offers straightforward and immediate setup, with zero configuration required for many common functionalities.
+- **Snapshot Testing**: Jest supports snapshot testing, allowing for easy and precise verification of component output.
+- **Broad Compatibility**: Jest is compatible with TypeScript and offers specific presets for Angular support.
+
+### Ngxtension
+
+The Angular application created with the Devmy CLI includes support for NgxTension, a versatile library that provides a set of advanced
+extensions and modules to enhance Angular application development. NgxTension offers ready-to-use solutions for common needs such as
+authorization management, advanced form configuration, and more, significantly simplifying the creation of complex applications.
+
+### Sentry
+
+Also included is a preconfigured setup for [Sentry](https://sentry.io/), a tool for error monitoring and management. Sentry helps detect,
+diagnose, and resolve issues in applications in real-time, thereby improving code quality and user experience.
+
+The Sentry configuration has been integrated into the project and uses the following environment variables:
+
+```bash copy
+[ApplicationName]_SENTRY_DNS
+[ApplicationName]_SENTRY_TRACE_SAMPLE_RATE
+[ApplicationName]_SENTRY_REPLAY_SAMPLE_RATE
+[ApplicationName]_SENTRY_REPLAY_ON_ERROR_SAMPLE_RATE
+[ApplicationName]_SENTRY_TRACE_PROPAGATION_TARGETS
+[ApplicationName]_BASE_API_URL
+[ApplicationName]_FORCE_UPDATE_INFORMATION_PARAM
+```
+
+Once you've created the Angular application with the Devmy CLI, it's essential to properly configure the environment variables
+to integrate Sentry and monitor errors and performance.
+
+### Router
+
+A configuration for routing has also been included in the `app.config.ts` file by adding
+`withComponentInputBinding()` and `withViewTransitions()` as providers to the router.
+
+#### Retrieving Information from the Router
+
+Through the `withComponentInputBinding()` provider, you can retrieve information directly from the router parameters
+and pass them as inputs into components.
+
+```typescript
+// app.routes.ts
+{ path: 'heroes/:id', component: HeroDetail },
+
+
+// hero-detail.component
+@Input()
+set id(heroId: string) {
+  this.hero$ = this.service.getHero(heroId);
+}
+```
+
+#### Transition Animations between Pages
+
+To further enhance the user experience, the `withViewTransitions()` provider has been added, introducing transition animations
+between pages during navigation. This makes interaction with the application smoother and visually appealing.
+
+This provider enables view transitions in the Router by executing the route activation and deactivation inside of
+document.startViewTransition.
