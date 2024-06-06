@@ -1,3 +1,10 @@
+## [1.16.1](https://github.com/acadevmy/devmy_cli/compare/v1.16.0...v1.16.1) (2024-06-06)
+
+
+### Bug Fixes
+
+* fixed brick list variables ([5b20e27](https://github.com/acadevmy/devmy_cli/commit/5b20e27ca8422ebeec456a5d518f43bfd3ade0ee))
+
 # [1.16.0](https://github.com/acadevmy/devmy_cli/compare/v1.15.0...v1.16.0) (2024-06-06)
 
 
