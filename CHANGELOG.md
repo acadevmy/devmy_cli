@@ -1,3 +1,10 @@
+# [1.16.0](https://github.com/acadevmy/devmy_cli/compare/v1.15.0...v1.16.0) (2024-06-06)
+
+
+### Features
+
+* add cypress application brick ([260bff0](https://github.com/acadevmy/devmy_cli/commit/260bff056205653a81d2b0d46be13ec545240bde))
+
 # [1.15.0](https://github.com/acadevmy/devmy_cli/compare/v1.14.0...v1.15.0) (2024-05-30)
 
 
