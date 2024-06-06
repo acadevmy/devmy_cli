@@ -2,6 +2,7 @@ import 'package:devmy_cli/src/utilities/create_mustache_array.dart';
 import 'package:devmy_cli/src/utilities/interact_validators.dart';
 import 'package:interact/interact.dart';
 import 'package:mason/mason.dart';
+import 'package:yaml/yaml.dart';
 
 extension BrickVariablePropertiesPrompt on BrickVariableProperties {
   dynamic input() {
@@ -64,10 +65,13 @@ extension BrickVariablePropertiesPrompt on BrickVariableProperties {
 
     if (type == BrickVariableType.list) {
       final separator = this.separator ?? ',';
+      final listDefaultValue = defaultValue is String
+          ? defaultValue
+          : (defaultValue as YamlList).value.join(',');
 
       return Input(
         prompt: '$prompt (concatenate with $separator)',
-        defaultValue: defaultValue,
+        defaultValue: listDefaultValue,
       )
           .interact()
           .split(separator)
