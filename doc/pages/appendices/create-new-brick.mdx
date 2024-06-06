@@ -1,0 +1,57 @@
+import { FileTree } from 'nextra/components'
+
+# Brick Creation Guide
+
+In this guide, the process of creating a new Brick will be demonstrated.
+
+## Get Started
+
+To create a new brick, use the following Devmy CLI command:
+
+```bash copy
+devmy utilities create-brick
+```
+
+A folder will be created that reflects the following structure:
+
+<FileTree>
+  <FileTree.Folder name="[Brick Name]" defaultOpen>
+    <FileTree.Folder name="__brick__" defaultOpen>
+      <FileTree.File name="Hello.md"/>
+    </FileTree.Folder>
+    <FileTree.Folder name="hooks" defaultOpen>
+      <FileTree.File name="postgen.dart"/>
+      <FileTree.File name="pregen.dart"/>
+      <FileTree.File name="pubspec.yaml"/>
+    </FileTree.Folder>
+    <FileTree.File name=".gitignore"/>
+    <FileTree.File name="brick.yaml"/>
+    <FileTree.File name="LICENSE"/>
+    <FileTree.File name="README.md"/>
+  </FileTree.Folder>
+</FileTree>
+
+## Brick Structure
+
+### __brick__
+
+Inside the `__brick__` folder, there will be the actual brick template using the [Mustache syntax](https://mustache.github.io/)
+to add dynamic values, like `Hello {{brickName}}!`.
+
+### Hooks
+
+Inside the `hooks` folder, there will be two functions that will be executed before and after the generation of the `brick`.
+
+### brick.yaml
+
+File containing all the necessary metadata for the brick. In this file, all the questions to ask the user should be included
+within the `vars` key. Each variable can be:
+- a type (string, number, boolean, enum, array, or list)
+- an optional short description
+- an optional default value
+- an optional list of default values (array only)
+- an optional prompt phrase used when asking for the variable
+- a list of values (enums only)
+- an optional separator (list only)
+
+For further information, visit the documentation of [BrickHub](https://docs.brickhub.dev/)
