@@ -12,8 +12,21 @@ class CommandRunnerFactory {
       suggestionDistanceLimit: 3,
     );
 
-    commandRunner.addCommand(BrickCommand(
-        brickCommand: configuration.new$, addons: configuration.addons));
+    commandRunner.addCommand(
+      BrickCommand(
+        brickCommand: configuration.new$,
+        addons: configuration.addons,
+      ),
+    );
+    commandRunner.addCommand(NodeCommand(
+      name: 'utilities',
+      description: 'Devmy cli Utilities',
+      children: configuration.utilities
+          .map((utility) =>
+              BrickCommand(brickCommand: utility, addons: configuration.addons))
+          .toList(),
+    ));
+
     commandRunner.addCommand(_createGenerateSection(configuration));
 
     return commandRunner;

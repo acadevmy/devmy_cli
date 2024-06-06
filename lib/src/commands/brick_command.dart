@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:args/command_runner.dart';
 import 'package:chalkdart/chalk.dart';
 import 'package:devmy_cli/src/constants/constants.dart';
+import 'package:devmy_cli/src/models/utility_command_definition.dart';
 import 'package:interact/interact.dart';
 import 'package:mason/mason.dart';
 
@@ -36,6 +37,10 @@ class BrickCommand extends Command<void> {
   Future<void> run() async {
     final brickCommand = this.brickCommand;
     final Directory currentWorkingDirectory = Directory.current;
+
+    if (brickCommand is UtilityCommandDefinition) {
+      return _runUtilityBrick(brickCommand, currentWorkingDirectory);
+    }
 
     if (brickCommand is WorkspaceCommandDefinition) {
       return _runWorkspaceBrick(brickCommand);
@@ -100,6 +105,28 @@ class BrickCommand extends Command<void> {
     print('Next steps:');
     print(chalk.blueBright('  cd ${workspaceName.paramCase}'));
     print(chalk.blueBright('  pnpm run start'));
+  }
+
+  Future<void> _runUtilityBrick(UtilityCommandDefinition brickCommand,
+      Directory currentWorkingDirectory) async {
+    final context = await _loadBrickContext(brickCommand.brick);
+
+    await _runBrick(
+      workspaceDirectory: currentWorkingDirectory,
+      targetDirectory: currentWorkingDirectory,
+      brickContext: context,
+      environment: {},
+      brickCommand: brickCommand,
+    );
+
+    await _runAddons(
+      workspaceDirectory: currentWorkingDirectory,
+      addonTargetDirectory: currentWorkingDirectory,
+      questions: brickCommand.questions,
+      environment: {},
+    );
+
+    print(chalk.green('Utility initialized successfully! 🚀'));
   }
 
   Future<void> _runApplicationBrick(
