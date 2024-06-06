@@ -6,7 +6,7 @@ const config: DocsThemeConfig = {
   project: {
     link: 'https://github.com/acadevmy/devmy_cli',
   },
-  docsRepositoryBase: 'https://github.com/acadevmy/devmy_cli',
+  docsRepositoryBase: 'https://github.com/acadevmy/devmy_cli/tree/main/doc',
   head: `
     <link
       rel="icon"
