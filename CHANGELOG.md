@@ -1,3 +1,10 @@
+# [1.19.0](https://github.com/acadevmy/devmy_cli/compare/v1.18.0...v1.19.0) (2024-06-07)
+
+
+### Features
+
+* added typescript library ([b70768d](https://github.com/acadevmy/devmy_cli/commit/b70768d2fccd3155699aa271c9a801251bd91037))
+
 # [1.18.0](https://github.com/acadevmy/devmy_cli/compare/v1.17.1...v1.18.0) (2024-06-07)
 
 
