@@ -1,3 +1,10 @@
+# [1.18.0](https://github.com/acadevmy/devmy_cli/compare/v1.17.1...v1.18.0) (2024-06-07)
+
+
+### Features
+
+* added big picture and manifesto ([b743a02](https://github.com/acadevmy/devmy_cli/commit/b743a02001b7b589257923a4582656e83984ee18))
+
 ## [1.17.1](https://github.com/acadevmy/devmy_cli/compare/v1.17.0...v1.17.1) (2024-06-06)
 
 
