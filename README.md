@@ -5,7 +5,7 @@
 The Devmy CLI is a command-line interface tool that you use to initialize, develop, scaffold,
 and maintain Devmy applications directly from a command shell.
 
-Visit our [online doc](https://clidocs-q8v0acyrp-devmy-pillars-projects.vercel.app)!
+Visit our [online doc](https://clidocs-devmy-pillars-projects.vercel.app)!
 
 ## Development Setup
 
