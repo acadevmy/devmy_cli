@@ -58,18 +58,19 @@ class CommandRunnerFactory {
         children: [
           NodeCommand(
             name: chalk.bold('application'),
-            aliases: ['a', 'app'],
+            aliases: ['a', 'app', 'application'],
             description: "Create a workspace application",
             children: applicationCommands,
           ),
           NodeCommand(
             name: chalk.bold('library'),
-            aliases: ['l', 'lib'],
+            aliases: ['l', 'lib', 'library'],
             description: "Create a workspace shareable library",
             children: libraryCommands,
           ),
           NodeCommand(
             name: chalk.bold('addon'),
+            aliases: ['addon'],
             description: "Integrate addons into your projects",
             children: addonCommands,
           ),
