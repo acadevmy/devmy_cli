@@ -1,3 +1,10 @@
+# [1.20.0](https://github.com/acadevmy/devmy_cli/compare/v1.19.1...v1.20.0) (2024-07-10)
+
+
+### Features
+
+* **mason:** update dependency ([73cc3a7](https://github.com/acadevmy/devmy_cli/commit/73cc3a7783fff74668b65f9ff0cc0371aff7730a))
+
 ## [1.19.1](https://github.com/acadevmy/devmy_cli/compare/v1.19.0...v1.19.1) (2024-07-10)
 
 
