@@ -1,3 +1,10 @@
+## [1.19.1](https://github.com/acadevmy/devmy_cli/compare/v1.19.0...v1.19.1) (2024-07-10)
+
+
+### Bug Fixes
+
+* **generate:** generate application ([0bc5798](https://github.com/acadevmy/devmy_cli/commit/0bc5798d965bd44eff9a59dd0264a6f9fdf1b242))
+
 # [1.19.0](https://github.com/acadevmy/devmy_cli/compare/v1.18.0...v1.19.0) (2024-06-07)
 
 
