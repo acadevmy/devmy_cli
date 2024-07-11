@@ -104,7 +104,7 @@ class BrickCommand extends Command<void> {
     print(chalk.green('🏛️ Scaffold initialized successfully! 🚀'));
     print('Next steps:');
     print(chalk.blueBright('  cd ${workspaceName.paramCase}'));
-    print(chalk.blueBright('  pnpm run start'));
+    print(chalk.blueBright('  pnpm run dev'));
   }
 
   Future<void> _runUtilityBrick(UtilityCommandDefinition brickCommand,
