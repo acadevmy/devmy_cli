@@ -1,3 +1,10 @@
+## [1.20.1](https://github.com/acadevmy/devmy_cli/compare/v1.20.0...v1.20.1) (2024-07-11)
+
+
+### Bug Fixes
+
+* update start server default command ([5928918](https://github.com/acadevmy/devmy_cli/commit/5928918a5d946543f92dd0b434a9be56502428b1))
+
 # [1.20.0](https://github.com/acadevmy/devmy_cli/compare/v1.19.1...v1.20.0) (2024-07-10)
 
 
