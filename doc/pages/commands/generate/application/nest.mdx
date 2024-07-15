@@ -1,5 +1,59 @@
-import Wip from '@/components/Wip.tsx';
+import Wip from "@/components/Wip.tsx";
 
-# Nest
+# NestJS
 
-<Wip/>
+[Nest.js](https://nestjs.com/) is a NodeJS framework, heavily inspired by Angular, that allows building efficient, reliable, and scalable server-side applications.
+
+## Get Started
+
+To create a new NestJS application, use the following Devmy CLI command:
+
+```bash copy
+devmy generate application nestjs
+```
+
+## Variables
+
+You can configure the initial application with the following parameters:
+
+- **Application name**: The name of the application
+- **Port**: Port to listen on.
+
+## Advantages
+
+### Axios
+
+[Axios](https://axios-http.com/) is a library for making HTTP requests from Node.js or the browser. In a NestJS application, Axios can be used to handle communications with external APIs easily and flexibly.
+
+### Class Transformer and Class Validator
+
+These libraries work together to transform and validate objects in TypeScript. class-transformer allows transforming plain JavaScript objects into instances of classes and vice versa, while class-validator enables applying and verifying validation rules on objects.
+
+More information here:
+
+- [Class Transformer Documentation](https://github.com/typestack/class-transformer#readme)
+- [Class Validator Documentation](https://github.com/typestack/class-validator#readme)
+
+### Cookie Parser
+
+[Cookie Parser](https://www.npmjs.com/package/cookie-parser) is a middleware that parses request cookies and populates req.cookies with a key-value object. This is useful in a NestJS application for handling cookie data.
+
+### DayJs
+
+[Day.js](https://day.js.org/docs/en/installation/installation) is a date manipulation library that provides an API similar to Moment.js but with smaller size and better performance.
+
+### Helmet
+
+[Helmet](https://helmetjs.github.io/) is a middleware that helps secure Express (and thus NestJS) applications by setting various HTTP headers related to security. It is particularly useful for preventing common vulnerabilities like XSS and clickjacking attacks.
+
+### Sentry
+
+[Sentry](https://docs.sentry.io/platforms/javascript/guides/nestjs/) is a platform for monitoring application errors and performance. In a NestJS application, Sentry can be used to track exceptions, errors, and performance, providing useful details for debugging and improving applications.
+
+### Swagger
+
+[Swagger](https://docs.nestjs.com/openapi/introduction) is a suite of tools for designing, building, and documenting APIs. With NestJS, @nestjs/swagger allows automatic generation of Swagger documentation based on decorators and metadata in the code.
+
+### Throttler
+
+[Throttler](https://docs.nestjs.com/security/rate-limiting) is a module that provides rate limiting for HTTP requests. In a NestJS application, Throttler can be used to prevent abuse and limit the number of requests to certain APIs.
