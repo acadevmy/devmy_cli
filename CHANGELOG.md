@@ -1,3 +1,10 @@
+## [1.21.1](https://github.com/acadevmy/devmy_cli/compare/v1.21.0...v1.21.1) (2024-07-15)
+
+
+### Bug Fixes
+
+* angular addon prompt copy ([7bbf326](https://github.com/acadevmy/devmy_cli/commit/7bbf326145f7a7f993824a9f90f7c03a68092456))
+
 # [1.21.0](https://github.com/acadevmy/devmy_cli/compare/v1.20.1...v1.21.0) (2024-07-15)
 
 
