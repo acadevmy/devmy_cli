@@ -19,7 +19,8 @@ final cliConfiguration = CliConfiguration(
       questions: [
         Question(
           isOptional: true,
-          prompt: 'Want to add tailwind to your Angular project?',
+          prompt:
+              'Which UI component library would you like to integrate into your Angular project?',
           addonNames: ['angular/tailwind'],
         ),
       ],
