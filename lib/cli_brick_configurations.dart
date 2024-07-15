@@ -16,6 +16,13 @@ final cliConfiguration = CliConfiguration(
       description:
           'Generate a fully-equipped Angular project in your workspace',
       aliases: ['ng'],
+      questions: [
+        Question(
+          isOptional: true,
+          prompt: 'Want to add tailwind to your Angular project?',
+          addonNames: ['angular/tailwind'],
+        ),
+      ],
     ),
     ApplicationCommandDefinition(
       name: 'nextjs',
@@ -66,6 +73,12 @@ final cliConfiguration = CliConfiguration(
       name: 'next/shadcnui',
       brick: GitPath("https://github.com/acadevmy/next-shacnui-addon-brick"),
       description: "Customizable UI for Next.js with ShadcnUI.",
+    ),
+    AddonCommandDefinition(
+      name: 'angular/tailwind',
+      brick:
+          GitPath("https://github.com/acadevmy/angular-tailwind-addon-brick"),
+      description: "Integrating TailwindCSS with Angular",
     ),
   ],
   libraries: [
