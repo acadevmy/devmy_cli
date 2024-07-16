@@ -1,5 +1,95 @@
-import Wip from '@/components/Wip.tsx';
-
 # Cypress
 
-<Wip/>
+The Cypress brick is already configured to automatically start all necessary environments before running the tests.
+Additionally, it uses Cucumber syntax to make test writing more similar to task structure, making test scripts easier to understand and maintain.
+
+## Get Started
+
+To create a new Cypress application, use the following Devmy CLI command:
+
+```bash copy
+devmy generate application cypress
+```
+
+- To run the end-to-end tests and view them in a **browser**, use the command: `pnpm run e2e`.
+- To run the end-to-end tests and view the results in the **terminal**, use the command: `pnpm run e2e:headless`.
+
+## Variables
+
+You can configure the initial application with the following parameters:
+
+- **Application name**: The name of the application
+- **baseUrl**: URL used as prefix for `cy.visit()` or `cy.request()` command's URL.
+- **webServerCommands**: The commands to execute via cypress-runner to start all the frontends and all the backends necessary for the tests.
+- **waitOnUrls**: The urls that must be alive via cypress-runner in order to start the cypress tests.
+
+## Advantages
+
+### Cucumber Syntax
+
+The [cypress-cucumber-preprocessor](https://github.com/badeball/cypress-cucumber-preprocessor) library allows you to use Cucumber syntax to write tests in Cypress.
+This combination enables you to describe tests in a readable, specification-based format that can be easily understood even by non-technical team members. Here is a brief explanation of the Cucumber syntax applied to Cypress:
+
+#### Feature File
+
+**.feature** files are where test scenarios are written using the Gherkin language. Each file describes a specific feature through a series of scenarios. The basic structure of a feature file includes keywords such as:
+
+- **Feature**: Describes the functionality under test.
+- **Scenario**: Describes a single test case with specific context.
+- **Given**: Sets up the initial conditions for the test.
+- **When**: Describes the action that is performed.
+- **Then**: Describes the expected output or result.
+
+**Example:**
+
+```gherkin copy
+Feature: User login
+
+  Scenario: Successful login with valid credentials
+    Given the user is on the login page
+    When the user enters valid credentials
+    Then the user should be redirected to the dashboard
+```
+
+#### Step Definitions
+
+**Step definitions** are JavaScript or TypeScript files that map the steps described in the feature files to executable code.
+Each step defined in the feature file must have a corresponding implementation in the step definitions.
+
+**Example**
+
+```javascript copy
+import { Given, When, Then } from "cypress-cucumber-preprocessor/steps";
+
+Given("the user is on the login page", () => {
+  cy.visit("/login");
+});
+
+When("the user enters valid credentials", () => {
+  cy.get('input[name="username"]').type("user");
+  cy.get('input[name="password"]').type("password");
+  cy.get('button[type="submit"]').click();
+});
+
+Then("the user should be redirected to the dashboard", () => {
+  cy.url().should("include", "/dashboard");
+});
+```
+
+### Selector by data-test attribute
+
+A selector has been added that allows elements to be selected based on a custom HTML attribute `data-test=[id]`. This enables the use of selectors specifically for e2e tests, avoiding the use of CSS selectors which may change over time and cause tests to fail.
+
+#### Usage
+
+1. Attach the `data-test` selector to an HTML tag:
+
+```html
+<h1 data-test="title">Hello World!</h1>
+```
+
+2. Use the custom selector in the Cypress file to retrieve it:
+
+```typescript
+cy.getByDataTest("title").should("contain", "Hello World!");
+```
