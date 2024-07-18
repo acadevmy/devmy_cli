@@ -1,3 +1,10 @@
+# [1.22.0](https://github.com/acadevmy/devmy_cli/compare/v1.21.1...v1.22.0) (2024-07-18)
+
+
+### Features
+
+* added angular library ([87f6f88](https://github.com/acadevmy/devmy_cli/commit/87f6f88e28a0426f5231b71e4983756667931548))
+
 ## [1.21.1](https://github.com/acadevmy/devmy_cli/compare/v1.21.0...v1.21.1) (2024-07-15)
 
 
