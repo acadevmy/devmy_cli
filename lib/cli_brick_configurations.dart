@@ -88,6 +88,12 @@ final cliConfiguration = CliConfiguration(
       aliases: ['ts'],
       brick: GitPath("https://github.com/acadevmy/typescript_library_brick"),
       description: "Generate a robust typescript library in your workspace",
+    ),
+    LibraryCommandDefinition(
+      name: 'angular',
+      aliases: ['ng'],
+      brick: GitPath("https://github.com/acadevmy/angular_library_brick"),
+      description: "Generate an angular library in your workspace",
     )
   ],
   utilities: [
