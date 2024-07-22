@@ -21,14 +21,9 @@ Visit our [online doc](https://clidocs-devmy-pillars-projects.vercel.app)!
 Install with dart tools:
 
 ```dart
-dart pub
-
-global activate
---
-
-source git
-https: //github.com/acadevmy/devmy_cli
+dart pub global activate --source git https://github.com/acadevmy/devmy_cli
 ```
+
 
 #### Install executable binaries
 
