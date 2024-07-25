@@ -1,3 +1,10 @@
+## [1.23.1](https://github.com/acadevmy/devmy_cli/compare/v1.23.0...v1.23.1) (2024-07-25)
+
+
+### Bug Fixes
+
+* **next/dynamic-route:** fileConflictResolution append ([3e18657](https://github.com/acadevmy/devmy_cli/commit/3e18657f6e5692d05426594651c0a8cc45e5c7f3))
+
 # [1.23.0](https://github.com/acadevmy/devmy_cli/compare/v1.22.0...v1.23.0) (2024-07-25)
 
 
