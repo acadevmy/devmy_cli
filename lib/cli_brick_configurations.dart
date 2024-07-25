@@ -42,6 +42,12 @@ final cliConfiguration = CliConfiguration(
               'Which state management solution would you like to use in your Next.js project?',
           addonNames: ['next/zustand'],
         ),
+        Question(
+          isOptional: true,
+          prompt:
+              'Would you like to add a dynamic route to your Next.js project?',
+          addonNames: ['next/dynamic-route'],
+        ),
       ],
       aliases: ['next'],
     ),
@@ -74,6 +80,12 @@ final cliConfiguration = CliConfiguration(
       name: 'next/shadcnui',
       brick: GitPath("https://github.com/acadevmy/next-shacnui-addon-brick"),
       description: "Customizable UI for Next.js with ShadcnUI.",
+    ),
+    AddonCommandDefinition(
+      name: 'next/dynamic-route',
+      brick:
+          GitPath("https://github.com/acadevmy/next-dynamic-route-addon-brick"),
+      description: "Create a dynamic route for your Next.js project",
     ),
     AddonCommandDefinition(
       name: 'angular/tailwind',
