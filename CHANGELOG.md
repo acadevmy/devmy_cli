@@ -1,3 +1,10 @@
+# [1.23.0](https://github.com/acadevmy/devmy_cli/compare/v1.22.0...v1.23.0) (2024-07-25)
+
+
+### Features
+
+* add next/dynamic-route ([1705b6e](https://github.com/acadevmy/devmy_cli/commit/1705b6e7a6e277c62e7751066f54d3f4b7ab7b36))
+
 # [1.22.0](https://github.com/acadevmy/devmy_cli/compare/v1.21.1...v1.22.0) (2024-07-18)
 
 
