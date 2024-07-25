@@ -86,6 +86,7 @@ final cliConfiguration = CliConfiguration(
       brick:
           GitPath("https://github.com/acadevmy/next-dynamic-route-addon-brick"),
       description: "Create a dynamic route for your Next.js project",
+      fileConflictResolution: FileConflictResolution.append,
     ),
     AddonCommandDefinition(
       name: 'angular/tailwind',
