@@ -1,3 +1,10 @@
+## [1.24.1](https://github.com/acadevmy/devmy_cli/compare/v1.24.0...v1.24.1) (2024-08-01)
+
+
+### Bug Fixes
+
+* update envinroment ([8b5b963](https://github.com/acadevmy/devmy_cli/commit/8b5b96376c01cf386fa7f50aab6f43dad4cc18fa))
+
 # [1.24.0](https://github.com/acadevmy/devmy_cli/compare/v1.23.1...v1.24.0) (2024-08-01)
 
 
