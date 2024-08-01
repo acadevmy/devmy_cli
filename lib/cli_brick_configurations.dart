@@ -69,6 +69,12 @@ final cliConfiguration = CliConfiguration(
       description: "Generate an armored Cypress project in your workspace",
       aliases: ['cy', 'cipresso'],
     ),
+    ApplicationCommandDefinition(
+      name: "firebase",
+      brick: GitPath("https://github.com/acadevmy/firebase-application-brick"),
+      description: "Generate a solid Firebase project in your workspace",
+      aliases: ['fb'],
+    ),
   ],
   addons: [
     AddonCommandDefinition(
