@@ -299,7 +299,7 @@ class BrickCommand extends Command<void> {
     Map<String, dynamic> updates,
   ) {
     for (final entry in updates.entries) {
-      environment.update(entry.key, (_) => entry.value);
+      environment[entry.key] = entry.value;
     }
   }
 
