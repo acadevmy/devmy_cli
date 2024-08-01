@@ -1,3 +1,10 @@
+# [1.24.0](https://github.com/acadevmy/devmy_cli/compare/v1.23.1...v1.24.0) (2024-08-01)
+
+
+### Features
+
+* add firebase brick ([45fe230](https://github.com/acadevmy/devmy_cli/commit/45fe2303003cab07e2f777f155cf7fdbca8f4a7a))
+
 ## [1.23.1](https://github.com/acadevmy/devmy_cli/compare/v1.23.0...v1.23.1) (2024-07-25)
 
 
