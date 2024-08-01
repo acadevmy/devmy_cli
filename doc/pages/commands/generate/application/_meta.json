@@ -2,6 +2,7 @@
   "angular": "Angular",
   "cypress": "Cypress",
   "directus": "Directus",
+  "firebase": "Firebase",
   "nest": "NestJS",
   "next": "NextJS"
 }

@@ -1,0 +1,225 @@
+import { Callout } from "nextra/components";
+
+# Firebase
+
+Through this brick, you can obtain a Nest application already configured to run Firebase Cloud Functions.
+This ready-to-use configuration allows you to easily integrate Firebase's serverless functionalities within a Nest application,
+simplifying the development of scalable and responsive solutions.
+
+## Get Started
+
+To create a new Firebase application, use the following Devmy CLI command:
+
+```bash copy
+devmy generate application firebase
+```
+
+## Variables
+
+You can configure the initial application with the following parameters:
+
+- **Application name**: The name of the application
+
+## Advantages
+
+### Configure Environments
+
+During the application installation, the `DevmyCLI` will automatically log in to [Firebase](https://firebase.google.com/) and scan all visible projects.
+Subsequently, you will be prompted to configure the development, staging, and production environments with the previously
+scanned projects or choose to skip the configuration for now.
+
+<Callout>
+  If you skip the configuration, you will need to manually set up the
+  environments in the `.firebaserc` file.
+</Callout>
+
+### Vitest
+
+Tests are executed using Vitest, a fast and lightweight testing framework designed for Vite projects.
+Vitest provides a testing experience similar to Jest but with enhanced speed due to its optimized integration with Vite.
+This allows for efficient and rapid execution of unit tests, integration tests, and snapshots.
+
+## Functions
+
+A **Firebase Cloud Function** is a serverless function that runs in response to events triggered by Firebase services,
+HTTPS requests, or other Google Cloud events. It allows you to execute backend code without managing servers, enabling you to perform tasks
+such as handling user authentication, processing real-time database changes, sending notifications, and more.
+Cloud Functions scale automatically based on demand, making it easy to build and maintain scalable, event-driven applications.
+
+### OnCall vs OnRequest
+
+In Firebase Cloud Functions, `onCall` and `onRequest` are two different ways to define functions that respond to events:
+
+**`onCall` Functions**
+
+- **Type**: Triggered by a direct call from a Firebase client app.
+- **Usage**: Typically used for scenarios where you need to execute backend code in response to a function call from the client-side code (e.g., mobile or web apps).
+- **Data Handling**: Automatically handles data serialization and deserialization, making it simpler to pass complex data structures.
+- **Authentication**: The function automatically receives the Firebase Authentication context, making it easy to verify the user's identity and access permissions.
+- **Example Use Case**: Handling user registration or updating user profiles where you want to call a backend function directly from your client-side application.
+
+**`onRequest` Functions**
+
+- **Type**: Triggered by HTTP requests.
+- **Usage**: Ideal for situations where you need to handle traditional HTTP requests or build REST APIs. This function can respond to various HTTP methods such as GET, POST, PUT, DELETE, etc.
+- **Data Handling**: Requires manual handling of request and response objects. You’ll need to parse request data and format responses yourself.
+- **Authentication**: Authentication and authorization must be managed manually, often by inspecting request headers or tokens.
+- **Example Use Case**: Building a custom REST API endpoint or handling webhook requests.
+
+<Callout>
+  The brick includes wrappers to facilitate development for both types of
+  Firebase Cloud Functions, `onCall` and `onRequest`. However, `onCall`
+  functions are **preferred** due to their seamless integration with Firebase
+  client apps, offering automatic data handling and authentication context,
+  which simplifies development and enhances security.
+</Callout>
+
+### Usage
+
+To create a function, you need to define a Nest module and a `handler` class that implements the appropriate interface:
+`OnCallHandler` for `onCall` functions and `OnRequestHandler` for `onRequest` functions.
+The `handler` class will manage the function logic and respond to the calls, while the Nest module will integrate and manage
+the execution context of the functions within the NestJS framework.
+
+```ts copy filename="cat.module.ts"
+import { Module } from "@nestjs/common";
+import { FireormModule } from "nestjs-fireorm";
+
+import { Cat } from "./entities";
+import CatHandler from "./handlers/cat.handler";
+import CatRequestHandler from "./handlers/cat-request.handler";
+import { CatMapper, CatService } from "./services";
+
+@Module({
+  imports: [FireormModule.forFeature([Cat])],
+  providers: [CatService, CatMapper, CatHandler, CatRequestHandler],
+})
+export default class CatsModule {}
+```
+
+```ts copy filename="cat.handler.ts"
+import { Injectable } from "@nestjs/common";
+
+import { OnCallHandler } from "../../firebase-functions-adapters";
+import { CatDTO } from "../dtos";
+import { CatService } from "../services";
+
+@Injectable()
+class CatHandler implements OnCallHandler<void> {
+  constructor(private readonly catService: CatService) {}
+
+  handle(): Promise<Array<CatDTO>> {
+    return this.catService.findAll();
+  }
+}
+
+export default CatHandler;
+```
+
+To complete the process, you need to export the function using the utilities provided by the brick, namely
+`createNestOnCall` for `onCall` functions and `createNestOnRequest` for `onRequest` functions.
+After defining the function within the Nest module, it is crucial to export it properly from the `src/main.ts` file so that it
+can be registered and used as part of the Firebase application.
+
+```ts copy filename="cat.function.ts"
+export const catOnCall = createNestOnCall(
+  AppModule,
+  () => import("../cats.module"),
+  () => import("../handlers/cat.handler")
+);
+```
+
+## Testing
+
+### Testing Firebase Cloud Functions in a NestJS Application
+
+To effectively test Firebase Cloud Functions in a NestJS application, it is essential to set up a comprehensive testing environment.
+This involves leveraging the `@nestjs/testing` module to create a testing module that includes all necessary providers and dependencies
+required for the function.
+
+Start by importing the necessary modules and dependencies, including `firebase-functions-test` for Firebase functions testing and `vitest`
+for running tests. In your testing setup, create a NestJS application instance using `Test.createTestingModule`. This module should register
+the handlers and services your function relies on. For example, if you're testing a `catOnCall` function, make sure to include the
+`CatHandler`, `CatRequestHandler`, and a mock implementation of the `CatService`.
+
+The `firebaseFunctionsTest` library is used to initialize Firebase functions testing. After creating the Nest application, obtain the instance
+of the service you're mocking (e.g., `CatService`) and wrap your Cloud Function for testing using a utility function such as `wrapNestOnCallForTest`.
+
+In the test cases, mock the necessary service methods and define the expected behavior. For instance, mock a method like `findAll` in
+the `CatService` to return a predefined set of data. Then, invoke the Cloud Function and assert that the response matches the expected output.
+
+Here is a template for setting up and testing a Cloud Function:
+
+```typescript
+import { INestApplication } from "@nestjs/common";
+import { Test } from "@nestjs/testing";
+import firebaseFunctionsTest from "firebase-functions-test";
+import { FeaturesList } from "firebase-functions-test/lib/features";
+import { beforeAll, describe, expect, Mocked, test, vi } from "vitest";
+
+import {
+  wrapNestOnCallForTest,
+  WrappedNestOnCall,
+} from "../../firebase-functions-adapters";
+import { CatDTO } from "../dtos";
+import CatHandler from "../handlers/cat.handler";
+import CatRequestHandler from "../handlers/cat-request.handler";
+import { CatService } from "../services";
+import { catOnCall } from "./cat.function";
+
+describe("Cats OnCall", () => {
+  let app: INestApplication;
+  let firebase: FeaturesList;
+  let catOnCallFunction: WrappedNestOnCall;
+  let catService: Mocked<CatService>;
+
+  beforeAll(async () => {
+    const moduleRef = await Test.createTestingModule({
+      providers: [
+        CatHandler,
+        CatRequestHandler,
+        { provide: CatService, useValue: { findAll: vi.fn() } },
+      ],
+    }).compile();
+
+    firebase = firebaseFunctionsTest();
+    app = moduleRef.createNestApplication();
+    catService = app.get(CatService);
+    catOnCallFunction = wrapNestOnCallForTest(firebase, app, catOnCall);
+  });
+
+  test("should call cat function", async () => {
+    catService.findAll.mockResolvedValue([
+      new CatDTO({ id: "123", name: "Pallino" }),
+    ]);
+    const actual = await catOnCallFunction({});
+    expect(actual).toEqual([{ id: "123", name: "Pallino" }]);
+  });
+});
+```
+
+## Firebase Emulator
+
+The Firebase Emulator Suite is a set of advanced tools provided by Firebase to enable local development and testing of Firebase services. It allows developers to simulate various Firebase products on their local machines, ensuring that applications can be developed, tested, and debugged without affecting the production environment. Key features of the Firebase Emulator Suite include:
+
+Local Emulation: Emulates Firebase services such as Firestore, Realtime Database, Authentication, Hosting, Functions, and more.
+Real-time Feedback: Provides immediate feedback and logs for operations, facilitating rapid development and debugging.
+Integration Testing: Supports complex integration testing by simulating real-world interactions between different Firebase services.
+Security Rules Testing: Allows testing of security rules for Firestore and Realtime Database locally to ensure that the rules work as intended before deploying them to production.
+Function Testing: Enables local invocation and testing of Cloud Functions, making it easier to develop and test serverless functions without deploying them.
+
+### Export/Import Data
+
+Firestore allows exporting and importing data for backup, migration, or
+restoration purposes. The export operation generates a file that includes the
+data and metadata of the entire collection or a subset of it. This export file
+is in a binary format optimized for Firestore, meaning it is not readable by
+other tools or applications, making it essential to handle these backups with
+care. When starting the application in development mode, the `data` folder will
+be imported automatically.
+
+<Callout>
+  It is crucial to be careful when modifying data imported and exported on
+  Firestore, as some end-to-end (E2E) tests may depend on that data and thus
+  fail.
+</Callout>
