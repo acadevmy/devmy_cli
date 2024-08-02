@@ -39,6 +39,32 @@ Tests are executed using Vitest, a fast and lightweight testing framework design
 Vitest provides a testing experience similar to Jest but with enhanced speed due to its optimized integration with Vite.
 This allows for efficient and rapid execution of unit tests, integration tests, and snapshots.
 
+## Firebase Emulator
+
+The Firebase Emulator Suite is a set of advanced tools provided by Firebase to enable local development and testing of Firebase services. It allows developers to simulate various Firebase products on their local machines, ensuring that applications can be developed, tested, and debugged without affecting the production environment. Key features of the Firebase Emulator Suite include:
+
+Local Emulation: Emulates Firebase services such as Firestore, Realtime Database, Authentication, Hosting, Functions, and more.
+Real-time Feedback: Provides immediate feedback and logs for operations, facilitating rapid development and debugging.
+Integration Testing: Supports complex integration testing by simulating real-world interactions between different Firebase services.
+Security Rules Testing: Allows testing of security rules for Firestore and Realtime Database locally to ensure that the rules work as intended before deploying them to production.
+Function Testing: Enables local invocation and testing of Cloud Functions, making it easier to develop and test serverless functions without deploying them.
+
+### Export/Import Data
+
+Firestore allows exporting and importing data for backup, migration, or
+restoration purposes. The export operation generates a file that includes the
+data and metadata of the entire collection or a subset of it. This export file
+is in a binary format optimized for Firestore, meaning it is not readable by
+other tools or applications, making it essential to handle these backups with
+care. When starting the application in development mode, the `data` folder will
+be imported automatically.
+
+<Callout>
+  It is crucial to be careful when modifying data imported and exported on
+  Firestore, as some end-to-end (E2E) tests may depend on that data and thus
+  fail.
+</Callout>
+
 ## Functions
 
 A **Firebase Cloud Function** is a serverless function that runs in response to events triggered by Firebase services,
@@ -197,29 +223,3 @@ describe("Cats OnCall", () => {
   });
 });
 ```
-
-## Firebase Emulator
-
-The Firebase Emulator Suite is a set of advanced tools provided by Firebase to enable local development and testing of Firebase services. It allows developers to simulate various Firebase products on their local machines, ensuring that applications can be developed, tested, and debugged without affecting the production environment. Key features of the Firebase Emulator Suite include:
-
-Local Emulation: Emulates Firebase services such as Firestore, Realtime Database, Authentication, Hosting, Functions, and more.
-Real-time Feedback: Provides immediate feedback and logs for operations, facilitating rapid development and debugging.
-Integration Testing: Supports complex integration testing by simulating real-world interactions between different Firebase services.
-Security Rules Testing: Allows testing of security rules for Firestore and Realtime Database locally to ensure that the rules work as intended before deploying them to production.
-Function Testing: Enables local invocation and testing of Cloud Functions, making it easier to develop and test serverless functions without deploying them.
-
-### Export/Import Data
-
-Firestore allows exporting and importing data for backup, migration, or
-restoration purposes. The export operation generates a file that includes the
-data and metadata of the entire collection or a subset of it. This export file
-is in a binary format optimized for Firestore, meaning it is not readable by
-other tools or applications, making it essential to handle these backups with
-care. When starting the application in development mode, the `data` folder will
-be imported automatically.
-
-<Callout>
-  It is crucial to be careful when modifying data imported and exported on
-  Firestore, as some end-to-end (E2E) tests may depend on that data and thus
-  fail.
-</Callout>
