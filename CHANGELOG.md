@@ -1,3 +1,11 @@
+# [1.25.0](https://github.com/acadevmy/devmy_cli/compare/v1.24.1...v1.25.0) (2024-08-05)
+
+
+### Features
+
+* add gitlab brick ([97eefe6](https://github.com/acadevmy/devmy_cli/commit/97eefe6b83d11166c4719d22aad8f690cbe483e3))
+* push "none" to optional options tail ([8a8b38d](https://github.com/acadevmy/devmy_cli/commit/8a8b38d220752fcf8438f241a8bdea880ce498c2))
+
 ## [1.24.1](https://github.com/acadevmy/devmy_cli/compare/v1.24.0...v1.24.1) (2024-08-01)
 
 
