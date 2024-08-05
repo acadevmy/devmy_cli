@@ -378,7 +378,7 @@ class BrickCommand extends Command<void> {
     }
 
     if (question.isOptional) {
-      optionLabels.insert(0, 'none');
+      optionLabels.add('none');
     }
 
     int index = Select(
@@ -386,11 +386,7 @@ class BrickCommand extends Command<void> {
       options: optionLabels,
     ).interact();
 
-    if (question.isOptional) {
-      index--;
-    }
-
-    if (index == -1) {
+    if (index == question.addonNames.length) {
       return [];
     }
 
