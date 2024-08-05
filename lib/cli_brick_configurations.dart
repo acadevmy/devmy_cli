@@ -8,6 +8,13 @@ final cliConfiguration = CliConfiguration(
   new$: NewCommandDefinition(
     brick: GitPath('https://github.com/acadevmy/scaffold-brick'),
     description: 'Easily create a Devmy scaffold masterpiece',
+    questions: [
+      Question(
+        isOptional: true,
+        prompt: 'What type of git repository do you want to use?',
+        addonNames: ['gitlab'],
+      ),
+    ],
   ),
   applications: [
     ApplicationCommandDefinition(
@@ -99,6 +106,12 @@ final cliConfiguration = CliConfiguration(
       brick:
           GitPath("https://github.com/acadevmy/angular-tailwind-addon-brick"),
       description: "Integrating TailwindCSS with Angular",
+    ),
+    AddonCommandDefinition(
+      name: 'gitlab',
+      aliases: ['gl'],
+      brick: GitPath("https://github.com/acadevmy/scaffold-gitlab-addon-brick"),
+      description: "Configure Gitlab",
     ),
   ],
   libraries: [

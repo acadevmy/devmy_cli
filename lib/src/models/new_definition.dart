@@ -5,6 +5,7 @@ class NewCommandDefinition extends WorkspaceCommandDefinition {
   NewCommandDefinition({
     required String description,
     required GitPath brick,
+    super.questions = const [],
   }) : super(
           description: description,
           name: 'new',
