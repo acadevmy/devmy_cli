@@ -1,3 +1,10 @@
+# [1.26.0](https://github.com/acadevmy/devmy_cli/compare/v1.25.0...v1.26.0) (2024-08-06)
+
+
+### Features
+
+* add firebase/hosting addon ([b2340fa](https://github.com/acadevmy/devmy_cli/commit/b2340faaf7defb15ca3399329856cd9d6f50c70f))
+
 # [1.25.0](https://github.com/acadevmy/devmy_cli/compare/v1.24.1...v1.25.0) (2024-08-05)
 
 
