@@ -81,6 +81,14 @@ final cliConfiguration = CliConfiguration(
       brick: GitPath("https://github.com/acadevmy/firebase-application-brick"),
       description: "Generate a solid Firebase project in your workspace",
       aliases: ['fb'],
+      questions: [
+        Question(
+          isOptional: true,
+          prompt:
+              'Would you like to add some applications to firebase hosting?',
+          addonNames: ['firebase/hosting'],
+        ),
+      ],
     ),
   ],
   addons: [
@@ -112,6 +120,12 @@ final cliConfiguration = CliConfiguration(
       aliases: ['gl'],
       brick: GitPath("https://github.com/acadevmy/scaffold-gitlab-addon-brick"),
       description: "Configure Gitlab",
+    ),
+    AddonCommandDefinition(
+      name: 'firebase/hosting',
+      brick:
+          GitPath("https://github.com/acadevmy/firebase-hosting-addon-brick"),
+      description: "Include application to firebase hosting",
     ),
   ],
   libraries: [
