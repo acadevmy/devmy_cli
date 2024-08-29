@@ -1,3 +1,10 @@
+# [1.27.0](https://github.com/acadevmy/devmy_cli/compare/v1.26.0...v1.27.0) (2024-08-29)
+
+
+### Features
+
+* add vercel deploy ([210131f](https://github.com/acadevmy/devmy_cli/commit/210131fd52019f92c6b62f240619ee05e1ee4e7f))
+
 # [1.26.0](https://github.com/acadevmy/devmy_cli/compare/v1.25.0...v1.26.0) (2024-08-06)
 
 
