@@ -1,3 +1,10 @@
+# [1.28.0](https://github.com/acadevmy/devmy_cli/compare/v1.27.0...v1.28.0) (2024-08-29)
+
+
+### Features
+
+* added addons documentation ([8de1580](https://github.com/acadevmy/devmy_cli/commit/8de1580c814c9636ce7f1e5c28cf0a292e6c979b))
+
 # [1.27.0](https://github.com/acadevmy/devmy_cli/compare/v1.26.0...v1.27.0) (2024-08-29)
 
 
