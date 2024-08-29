@@ -1,0 +1,25 @@
+---
+title: firebase/hosting
+---
+
+# Firebase/Hosting
+
+The Devmy CLI provides a set of predefined configurations that will allow you to start developing right away.
+
+The firebase/hosting addon allows you to automatically select and configure applications within the monorepo
+to be used as [hosting for Firebase](https://firebase.google.com/docs/hosting). When you run the command, the CLI
+will prompt you to choose the application where the changes will be applied, and you'll need to select the project
+containing the Firebase configurations.
+After that, a list of monorepo applications compatible with this feature will be displayed.
+
+The plugin will check for any already configured applications to prevent accidental overwrites.
+
+By selecting the desired applications, the plugin will automatically integrate them into the Firebase configuration.
+
+## Get Started
+
+To add a new firebase hosting configuration, use the following Devmy CLI command:
+
+```bash copy
+devmy generate addon firebase/hosting
+```

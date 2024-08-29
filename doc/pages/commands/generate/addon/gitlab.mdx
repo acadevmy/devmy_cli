@@ -1,0 +1,158 @@
+# Gitlab
+
+The Devmy CLI provides a set of predefined configurations that will allow you to start developing right away.
+
+Gitlab Addon automates the process of setting up the gitlab configuration for
+the current workspace, making it ready for CI/CD environment. It will create the
+following files automatically:
+
+1. .gitlab-ci.yml
+automatically creates the `.gitlab-ci.yml` file including all the common steps of all the projects defined in the
+[Devmy devops project](https://gitlab.com/pillar-1/devops)
+
+2. Merge request template
+automatically creates and configure the `.gitlab/merge_request_templates/merge_request_template.md` file including all
+the common sections of all projects
+
+
+**IMPORTANT:**
+- Add environment variables:
+once the command is finished, it will invite you to configure some environment variables on gitlab.
+Do it now or it will be your business and you will have to manually recover them later.
+
+## Get Started
+
+To add a new vercel configuration, use the following Devmy CLI command:
+
+```bash copy
+devmy generate addon gitlab
+```
+
+## Manual configuration
+
+in case you want to manually configure the gitlab configuration you will have to do following steps.
+
+### .gitlab-ci.yml
+
+You will have to insert the `.gitlab-ci.yml` file into
+your application.
+this is a sample `.gitlab-ci.yml` which is usually applied by this addon:
+
+```yml filename=".gitlab-ci.yml" copy
+include:
+  - file: /gitlab-ci/common.yml
+    project: pillar-1/devops
+    ref: v1.1.6
+```
+
+### Merge request
+
+You will have to create and configure the `.gitlab/merge_request_templates/merge_request_template.md`.
+this is a sample `merge_request_template.md` which is usually applied by this addon:
+
+```markdown filename="merge_request_template.md" copy
+## First you have to merge
+
+<!-- Please delete options that are not relevant. -->
+
+- [ ] https://gitlab.com/{group}/{project}/-/merge_requests/{id}
+- [ ] https://gitlab.com/{group}/{project}/-/merge_requests/{id}
+- [ ] https://gitlab.com/{group}/{project}/-/merge_requests/{id}
+
+## Description
+
+<!--
+Include a summary of the change and indicate which issue was resolved by indicating the task number.
+Please also include relevant rationale and context.
+-->
+...
+
+**Issue:** [DE-00000](https://app.clickup.com/t/2428116/DE-00000)
+
+## Screenshots
+
+<!-- Please include all images necessary to understand your merge request. -->
+
+## Type of change
+
+- [ ] Bug fix (non-disruptive change that solves a problem)
+- [ ] New feature (non-disruptive change that adds new functionality)
+- [ ] Breaking change (fix or feature that would prevent existing features from working as intended)
+- [ ] Docs (correction or addition of documentation)
+
+## How was it tested?
+
+<!--
+Describe the tests you ran to verify the changes.
+Please provide instructions so we can reproduce. Please also list all details relevant to your test setup.
+-->
+
+- [ ] Test A
+- [ ] Test B
+
+## Checklist:
+
+- [ ] I have included the task ID in the title of this merge request
+- [ ] I aligned my branch with the changes in the `main` branch
+- [ ] I did a self-review of my code
+- [ ] I commented out my code, especially in hard-to-understand areas
+- [ ] I made corresponding changes to the documentation
+- [ ] I formatted and sorted the code correctly
+- [ ] I've added tests that prove my fix is effective or that my functionality is correct
+- [ ] New and existing unit tests pass locally with my changes
+```
+
+### Semantic Release
+
+You will have to update the `.releaserc.js` file to work with gitlab.
+
+install the gitlab plugin for semantic release:
+
+```bash copy
+pnpm i -D @semantic-release/gitlab -w
+```
+this is a sample `.releaserc.js` which is usually applied by this addon:
+
+```js filename=".releaserc.js" copy
+const { env } = require('@dotenv-run/core');
+
+env({
+  files: ['.env.vault'],
+});
+
+/**
+ * @type {import('semantic-release').GlobalConfig}
+ */
+const releaseConfig = {
+  branches: ["main"],
+  plugins: [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/changelog",
+    "@semantic-release/npm",
+    ["@semantic-release/gitlab", { assets: ["CHANGELOG.md"] }],
+    [
+      "@semantic-release/exec",
+      {
+        prepareCmd: "pnpm version ${nextRelease.version} --allow-same-version --no-commit-hooks --no-git-tag-version -ws --no-workspaces-update",
+      },
+    ],
+    [
+      "@semantic-release/git",
+      {
+        assets: [
+          "CHANGELOG.md",
+          "package.json",
+          "package-lock.json",
+          "applications/**/package.json",
+          "libraries/**/pnpm-lock.yaml"
+        ],
+        message:
+          "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}",
+      },
+    ],
+  ],
+};
+
+module.exports = releaseConfig;
+```

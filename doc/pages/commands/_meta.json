@@ -1,4 +1,5 @@
 {
   "scaffold": "new",
+  "docs": "docs",
   "generate": "generate"
 }

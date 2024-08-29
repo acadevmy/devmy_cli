@@ -1,0 +1,120 @@
+# Vercel
+
+The Devmy CLI provides a set of predefined configurations that will allow you to start developing right away.
+
+Vercel Addon automates the process of setting up the Vercel configuration for
+the current application, making it ready for deployment. It performs the
+following tasks automatically:
+
+1. Requests Vercel Tokens:
+For both the staging and production environments, you will be asked to
+provide their respective Vercel tokens. You can obtain these tokens by
+visiting:
+https://vercel.com/account/tokens
+
+2. Updates the CDCI file:
+The command will modify your (GitLab CI) configuration to include deployment
+steps for both staging and production environments.
+
+3. Populates .env.vault variables:
+The script will automatically insert environment variables into the
+.env.vault file for both staging and production.
+
+
+**IMPORTANT:**
+- Separate Vercel accounts:
+This command assumes that staging and production are hosted on two separate
+Vercel accounts. Using the same token for both environments will result in
+deployment issues. Make sure to provide distinct tokens for each environment.
+
+- Account access:
+If you do not have access to the Vercel accounts for staging or production,
+please contact your project lead or admin to request access before running
+this setup.
+
+## Get Started
+
+To add a new vercel configuration, use the following Devmy CLI command:
+
+```bash copy
+devmy generate addon vercel
+```
+
+## Manual configuration
+
+in case you want to manually configure the vercel configuration you will have to insert the vercel.json file into
+your application.
+see the [official documentation](https://vercel.com/docs/projects/project-configuration).
+this is a sample `vercel.json` which is usually applied by this addon:
+
+```json copy
+{
+    "version": 2,
+    "regions": ["cdg1"],
+    "framework": "angular",
+    "installCommand": "echo \"Install (SKIPPED): pnpm deploy bundles local libraries into node_modules. Running pnpm install again would overwrite them.\"",
+    "buildCommand": "pnpm build",
+    "outputDirectory": "dist"
+}
+```
+
+### Environment
+
+Once you have defined the `vercel.json` file you will need to include the following variables in .env.vault production
+and staging areas:
+
+```dotenv
+[APPLICATION_PREFIX]_VERCEL_PROJECT_ID=[application project id]
+[APPLICATION_PREFIX]_VERCEL_ORG_ID=[application organization id]
+[APPLICATION_PREFIX]_VERCEL_TOKEN=[application vercel token]
+```
+To get `VERCEL_PROJECT_ID` and `VERCEL_ORG_ID` you will have to manually link the project to vercel using the vercel
+CLI command [vercel link](https://vercel.com/docs/cli/link) command and retrieving them from the `./.vercel/project.json`
+file. The operation must be repeated for the staging environment and for the production environment.
+
+To get the vercel token, you will have to manually generate it at https://vercel.com/account/tokens
+(make sure you are logged in to the right account).
+
+### Pipelines
+
+#### Gitlab
+
+Once you have defined the `vercel.json` file you will need to include the `vercel.yml` file in your `.gitlab-ci.yml`
+
+```yaml copy
+
+include:
+  - file: /gitlab-ci/common.yml
+    project: pillar-1/devops
+    ref: v1.1.6
+  - file: /gitlab-ci/vercel.yml
+    project: pillar-1/devops
+    ref: v1.1.6
+```
+
+and configure staging and production jobs. to do this, simply create jobs that inherit from `.deploy-vercel` and
+`.deploy-staging` if you are configuring the staging environment or `.deploy-production` if you are configuring
+production.
+
+here is an example:
+
+```yaml copy
+"[STAGING] My App":
+  extends:
+    - .deploy-staging
+    - .deploy-vercel
+  variables:
+    APPLICATION_PREFIX: MY_APP
+    APPLICATION_NAME: my-app
+
+"[PRODUCTION] My App":
+  extends:
+    - .deploy-production
+    - .deploy-vercel
+  variables:
+    APPLICATION_PREFIX: MY_APP
+    APPLICATION_NAME: my-app
+```
+
+**Pay attention**: `APPLICATION_PREFIX` refers to the prefix used by dotenv-vault for its variables,
+while `APPLICATION_NAME` corresponds to the application name specified in its package.json

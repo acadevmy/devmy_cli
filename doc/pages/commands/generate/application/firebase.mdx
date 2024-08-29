@@ -1,4 +1,4 @@
-import { Callout } from "nextra/components";
+import {Callout} from "nextra/components";
 
 # Firebase
 
@@ -29,8 +29,8 @@ Subsequently, you will be prompted to configure the development, staging, and pr
 scanned projects or choose to skip the configuration for now.
 
 <Callout>
-  If you skip the configuration, you will need to manually set up the
-  environments in the `.firebaserc` file.
+    If you skip the configuration, you will need to manually set up the
+    environments in the `.firebaserc` file.
 </Callout>
 
 ### Vitest
@@ -60,9 +60,9 @@ care. When starting the application in development mode, the `data` folder will
 be imported automatically.
 
 <Callout>
-  It is crucial to be careful when modifying data imported and exported on
-  Firestore, as some end-to-end (E2E) tests may depend on that data and thus
-  fail.
+    It is crucial to be careful when modifying data imported and exported on
+    Firestore, as some end-to-end (E2E) tests may depend on that data and thus
+    fail.
 </Callout>
 
 ## Functions
@@ -93,11 +93,11 @@ In Firebase Cloud Functions, `onCall` and `onRequest` are two different ways to 
 - **Example Use Case**: Building a custom REST API endpoint or handling webhook requests.
 
 <Callout>
-  The brick includes wrappers to facilitate development for both types of
-  Firebase Cloud Functions, `onCall` and `onRequest`. However, `onCall`
-  functions are **preferred** due to their seamless integration with Firebase
-  client apps, offering automatic data handling and authentication context,
-  which simplifies development and enhances security.
+    The brick includes wrappers to facilitate development for both types of
+    Firebase Cloud Functions, `onCall` and `onRequest`. However, `onCall`
+    functions are **preferred** due to their seamless integration with Firebase
+    client apps, offering automatic data handling and authentication context,
+    which simplifies development and enhances security.
 </Callout>
 
 ### Usage
@@ -223,3 +223,12 @@ describe("Cats OnCall", () => {
   });
 });
 ```
+
+## Addons
+
+### firebase/hosting
+
+Both during the creation phase of the firebase application and afterwards, it will be possible to add
+[hosting](/commands/generate/addon/firebase_hosting) configuration.
+
+The addon will take care of installing the necessary dependencies and configurations so that it is ready to use immediately.

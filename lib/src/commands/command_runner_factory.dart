@@ -1,6 +1,7 @@
 import 'package:args/command_runner.dart';
 import 'package:chalkdart/chalkstrings.dart';
 import 'package:devmy_cli/src/commands/brick_command.dart';
+import 'package:devmy_cli/src/commands/docs_command.dart';
 import 'package:devmy_cli/src/commands/node_command.dart';
 import 'package:devmy_cli/src/models/models.dart';
 
@@ -12,24 +13,27 @@ class CommandRunnerFactory {
       suggestionDistanceLimit: 3,
     );
 
-    commandRunner.addCommand(
-      BrickCommand(
-        brickCommand: configuration.new$,
-        addons: configuration.addons,
-      ),
-    );
-    commandRunner.addCommand(NodeCommand(
-      name: 'utilities',
-      description: 'Devmy cli Utilities',
-      children: configuration.utilities
-          .map((utility) =>
-              BrickCommand(brickCommand: utility, addons: configuration.addons))
-          .toList(),
-    ));
-
-    commandRunner.addCommand(_createGenerateSection(configuration));
-
-    return commandRunner;
+    return commandRunner
+      ..addCommand(DocsCommand())
+      ..addCommand(
+        BrickCommand(
+          brickCommand: configuration.new$,
+          addons: configuration.addons,
+        ),
+      )
+      ..addCommand(NodeCommand(
+        name: 'utilities',
+        description: 'Devmy cli Utilities',
+        children: configuration.utilities
+            .map(
+              (utility) => BrickCommand(
+                brickCommand: utility,
+                addons: configuration.addons,
+              ),
+            )
+            .toList(),
+      ))
+      ..addCommand(_createGenerateSection(configuration));
   }
 
   Command<void> _createGenerateSection(CliConfiguration configuration) {
