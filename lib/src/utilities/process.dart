@@ -52,7 +52,6 @@ Future<void> commitChanges(
         'commit',
         '-m',
         '"$message"',
-        "--no-verify",
       ],
       workingDirectory: workspaceDirectory.path,
     );

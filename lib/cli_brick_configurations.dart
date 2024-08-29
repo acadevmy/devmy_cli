@@ -27,8 +27,13 @@ final cliConfiguration = CliConfiguration(
         Question(
           isOptional: true,
           prompt:
-              'Which UI component library would you like to integrate into your Angular project?',
+              'Which UI component library would you like to integrate into your Angular application?',
           addonNames: ['angular/tailwind'],
+        ),
+        Question(
+          isOptional: true,
+          prompt: 'Would you like to set up a deploy system?',
+          addonNames: ['vercel'],
         ),
       ],
     ),
@@ -40,20 +45,25 @@ final cliConfiguration = CliConfiguration(
         Question(
           isOptional: true,
           prompt:
-              'Which UI component library would you like to integrate into your Next.js project?',
+              'Which UI component library would you like to integrate into your Next.js application?',
           addonNames: ['next/shadcnui'],
         ),
         Question(
           isOptional: true,
           prompt:
-              'Which state management solution would you like to use in your Next.js project?',
+              'Which state management solution would you like to use in your Next.js application?',
           addonNames: ['next/zustand'],
         ),
         Question(
           isOptional: true,
           prompt:
-              'Would you like to add a dynamic route to your Next.js project?',
+              'Would you like to add a dynamic route to your Next.js application?',
           addonNames: ['next/dynamic-route'],
+        ),
+        Question(
+          isOptional: true,
+          prompt: 'Would you like to set up a deploy system?',
+          addonNames: ['vercel'],
         ),
       ],
       aliases: ['next'],
@@ -120,6 +130,12 @@ final cliConfiguration = CliConfiguration(
       aliases: ['gl'],
       brick: GitPath("https://github.com/acadevmy/scaffold-gitlab-addon-brick"),
       description: "Configure Gitlab",
+    ),
+    AddonCommandDefinition(
+      name: 'vercel',
+      aliases: ['vercello', 'marcello'],
+      brick: GitPath("https://github.com/acadevmy/vercel_addon_brick"),
+      description: "Configure Vercel",
     ),
     AddonCommandDefinition(
       name: 'firebase/hosting',
