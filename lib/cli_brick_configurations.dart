@@ -69,6 +69,12 @@ final cliConfiguration = CliConfiguration(
       aliases: ['next'],
     ),
     ApplicationCommandDefinition(
+      name: "shopware",
+      brick: GitPath("https://github.com/acadevmy/shopware-application-brick"),
+      description:
+          "Generate a starter to install Shopware 6, inside the container",
+    ),
+    ApplicationCommandDefinition(
       name: "directus",
       brick: GitPath("https://github.com/acadevmy/directus-application-brick"),
       description:
