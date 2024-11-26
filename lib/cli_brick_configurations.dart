@@ -45,6 +45,12 @@ final cliConfiguration = CliConfiguration(
         Question(
           isOptional: true,
           prompt:
+              'Which template would you like to configure for your Next.js project?',
+          addonNames: ['next/commerce'],
+        ),
+        Question(
+          isOptional: true,
+          prompt:
               'Which UI component library would you like to integrate into your Next.js application?',
           addonNames: ['next/shadcnui'],
         ),
@@ -108,6 +114,12 @@ final cliConfiguration = CliConfiguration(
     ),
   ],
   addons: [
+    AddonCommandDefinition(
+      name: 'next/commerce',
+      brick: GitPath("https://github.com/acadevmy/nextjs-commerce-addon-brick"),
+      description: "Configures the scaffold to support the ecommerce setup in your Next.js project.",
+    ),
+    
     AddonCommandDefinition(
       name: 'next/zustand',
       brick: GitPath("https://github.com/acadevmy/next-zustand-addon-brick"),
