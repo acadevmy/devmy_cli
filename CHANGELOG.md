@@ -1,3 +1,10 @@
+# [1.29.0](https://github.com/acadevmy/devmy_cli/compare/v1.28.0...v1.29.0) (2024-11-26)
+
+
+### Features
+
+* intro new brick shopware ([05e4217](https://github.com/acadevmy/devmy_cli/commit/05e4217f1462027c3d9c32c9e9dc4709534a0943))
+
 # [1.28.0](https://github.com/acadevmy/devmy_cli/compare/v1.27.0...v1.28.0) (2024-08-29)
 
 
