@@ -1,3 +1,10 @@
+# [1.30.0](https://github.com/acadevmy/devmy_cli/compare/v1.29.0...v1.30.0) (2024-11-26)
+
+
+### Features
+
+* add next/commerce addon ([4c5ec16](https://github.com/acadevmy/devmy_cli/commit/4c5ec163450640f0d198cf05d98eb8d467219da7))
+
 # [1.29.0](https://github.com/acadevmy/devmy_cli/compare/v1.28.0...v1.29.0) (2024-11-26)
 
 
