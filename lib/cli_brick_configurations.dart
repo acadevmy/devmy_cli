@@ -51,12 +51,6 @@ final cliConfiguration = CliConfiguration(
         Question(
           isOptional: true,
           prompt:
-              'Which UI component library would you like to integrate into your Next.js application?',
-          addonNames: ['next/shadcnui'],
-        ),
-        Question(
-          isOptional: true,
-          prompt:
               'Which state management solution would you like to use in your Next.js application?',
           addonNames: ['next/zustand'],
         ),
@@ -124,11 +118,6 @@ final cliConfiguration = CliConfiguration(
       name: 'next/zustand',
       brick: GitPath("https://github.com/acadevmy/next-zustand-addon-brick"),
       description: "Integrating Zustand with Next.js",
-    ),
-    AddonCommandDefinition(
-      name: 'next/shadcnui',
-      brick: GitPath("https://github.com/acadevmy/next-shacnui-addon-brick"),
-      description: "Customizable UI for Next.js with ShadcnUI.",
     ),
     AddonCommandDefinition(
       name: 'next/dynamic-route',
