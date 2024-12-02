@@ -1,3 +1,10 @@
+# [1.31.0](https://github.com/acadevmy/devmy_cli/compare/v1.30.0...v1.31.0) (2024-12-02)
+
+
+### Features
+
+* removed next/shadcnui addon ([9db15c4](https://github.com/acadevmy/devmy_cli/commit/9db15c4fa8f3abcf5c9821297c9050d434745388))
+
 # [1.30.0](https://github.com/acadevmy/devmy_cli/compare/v1.29.0...v1.30.0) (2024-11-26)
 
 
