@@ -1,0 +1,41 @@
+# Linting
+
+To improve code quality and maintain consistency across different projects,
+we have implemented a linting standard for all development teams at Devmy.
+To this end, we have developed the npm package [@devmy/eslint-plugin](https://www.npmjs.com/package/@devmy/eslint-plugin),
+which provides common and framework-specific linting rules used by the teams.
+
+## Advantages of Standardization
+
+By implementing `@devmy/eslint-plugin` and adopting standardized linting rules, we have achieved the following advantages:
+
+- **Consistency**: All projects follow the same rules, facilitating code readability and maintenance.
+- **Better Code Quality**: Linting rules help prevent common errors and improve the overall quality of the code.
+- **Ease of Integration**: Integrating the package into existing projects is straightforward and does not require invasive changes.
+
+## Package Structure
+
+The `@devmy/eslint-plugin` package is designed to be easy to use and integrate into existing projects. The linting rules are divided into two main categories:
+
+1. **Recommended Rules**: These rules are included in the `@devmy/eslint-plugin/recommended` set and must be used in all projects. They cover best practices and common conventions that every project should follow.
+
+2. **Framework-Specific Rules**: To support specific frameworks and libraries, we have developed additional rule sets that extend the recommended rules. For example, for Angular projects, the `@devmy/eslint-plugin/angular-recommended` set is available, which inherits rules from the recommended set and adds framework-specific rules for Angular.
+
+## Configuration
+
+To configure linting in a project, simply install the `@devmy/eslint-plugin` package and add the appropriate configuration to the `.eslintrc.[cjs|mjs|js]` file. Here is an example of basic configuration:
+
+```javascript
+module.exports = {
+    extends: [
+        '@devmy/eslint-plugin/angular-recommended' // Framework-specific rules for Angular (already includes recommended rules)
+    ],
+    rules: {
+        // Custom rules can be added here
+    }
+};
+```
+
+## Contributes
+
+To contribute to the development of this package, visit the [GitHub repository](https://github.com/acadevmy/eslint-plugin).
