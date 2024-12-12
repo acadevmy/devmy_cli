@@ -1,0 +1,27 @@
+# Package Manager - Corepack + PNPM
+
+Choosing the right package manager is crucial for ensuring efficient dependency management in our project, facilitating the work of developers, and optimizing the overall performance of the application. After careful consideration, we have decided to adopt **Corepack** alongside **PNPM** for the following reasons:
+
+- **Automated Version Management**:
+- **Corepack** simplifies the management of package manager versions, ensuring that developers always use the correct versions of PNPM (or other supported managers) without having to manually configure each environment.
+- This automation helps avoid version conflicts and improves the reliability of builds.
+
+- **Optimized Performance**:
+- **PNPM** is designed to be highly performant, reducing installation times for dependencies through the use of an advanced caching system.
+- Compared to other package managers, PNPM employs a global store approach for dependencies, allowing packages to be shared across projects, minimizing the time and space required for installations.
+
+- **Efficient Disk Space Usage**:
+- PNPM's strategy of linking dependencies rather than duplicating them significantly reduces disk space usage, making the installation process leaner and less burdensome on the system.
+
+- **Stringent Package Policy**:
+- PNPM enforces a strict policy regarding which packages the application can access, enhancing security and ensuring that only declared dependencies are included in the project.
+- This approach minimizes the risk of vulnerabilities and conflicts, improving the overall stability of the application.
+
+In summary, the combination of **Corepack** and **PNPM** allows us to optimize dependency management, improve performance, and ensure greater security in our development environment. These choices reflect our commitment to maintaining an effective and modern workflow in line with industry best practices.
+
+## Goodbye NVM
+With the adoption of `Corepack` and `PNPM`, there is no longer a need to use `NVM` to manage Node versions, further simplifying the setup process and improving workflow efficiency.
+
+## Sources
+- [Corepack](https://nodejs.org/api/corepack.html)
+- [PNPM](https://pnpm.io/)

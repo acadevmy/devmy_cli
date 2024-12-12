@@ -1,0 +1,13 @@
+# Configuration
+
+We use [Dotenv Vault](https://www.dotenv.org/docs/security/env-vault) created at the root of the monorepo.
+Each application within the monorepo has access only to the parameters relevant to it, utilizing prefix filtering
+tools such as [Vite env-and-mode](https://vitejs.dev/guide/env-and-mode#env-files), [Webpack with @dotenv-run/webpack](https://www.npmjs.com/package/@dotenv-run/webpack),
+[Jest with @dotenv-run/jest](https://www.npmjs.com/package/@dotenv-run/jest), [Angular with @ngx-env/builder](https://www.npmjs.com/package/@ngx-env/builder) and
+[dotenv-run](https://dotenv.run).
+
+## Benefits of Centralized Configuration
+
+- **Single Management Point**: Centralized management of all configurations for all applications.
+- **Enhanced Security**: Reduces the risk of sharing sensitive information between different applications due to prefix filtering.
+

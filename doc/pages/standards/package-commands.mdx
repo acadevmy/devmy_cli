@@ -1,0 +1,23 @@
+# Standardized Package Commands
+
+The package manager is standardized with the following commands:
+
+- `dev`: Launches the monorepo (or single application) in development mode, activating hot-reload. NX builds the libraries that the single project depends on.
+- `build`: Executes the production build of the entire monorepo (or single application). NX builds the libraries that the single project depends on.
+- `start`: Starts the applications compiled with the production build (or single application). NX runs the build for the single project and all its dependencies.
+- `lint`: Performs lint operations on the project or the monorepo.
+- `lint:fix`: Performs lint fixes on the project.
+- `test`: Runs tests on the project or the monorepo.
+- `test:headless`: Runs tests in headless mode, useful for pipelines.
+- `e2e`: Runs end-to-end tests.
+- `e2e:headless`: Runs end-to-end tests in headless mode, useful for pipelines.
+
+## Design Pattern Composite
+
+By adopting the same interface for the package in sub-projects through NX, we implement the Composite Design Pattern. This pattern allows us to treat individual objects and compositions of objects uniformly through a common interface.
+
+## Benefits of the Composite Design Pattern
+
+- **Uniform Access**: Simplifies the development and maintenance process by reducing dependency on specific implementation details.
+- **Modularity and Reusability**: Promotes modularity and code reusability by allowing individual objects and compositions to be treated the same way.
+- **Agnostic Pipelines**: Allows pipelines to be written in a way that is completely agnostic of the project they are working on.

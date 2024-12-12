@@ -1,0 +1,28 @@
+# Standards
+
+In this section, all the standards and conventions adopted to standardize the applications developed in Devmy are summarized.
+Implementing uniform standards is crucial for ensuring consistency, maintainability, and code quality across all projects.
+These principles not only facilitate collaboration among team members but also ensure that applications are easily understandable and scalable over time.
+Following these guidelines helps reduce the risk of errors and improve development efficiency, allowing teams to focus
+on innovation and problem-solving rather than managing discrepancies in the code.
+
+## Big Picture
+
+![Big Picture Scheme](/pages/index/big-picture.png)
+
+The main idea is to create a cohesive and easy-to-use structure for developers, favoring centralization rather than scattering resources.
+The standardized commands in the package
+(`dev`, `build`, `start`, `test`, `e2e`, `lint`, `release`) are not just predefined scripts; they represent the only scripts necessary
+for any application. We should add new scripts only in cases of extreme necessity.
+If something requires more complex management, it needs to be analyzed and integrated into an npm (or pub) script.
+
+For example, for integrating [Cypress](https://www.npmjs.com/package/cypress), instead of creating new scripts in the package, we developed
+[@devmy/cypress-runner](https://www.npmjs.com/package/@devmy/cypress-runner) so that it can be used by everyone without
+adding complexity to the package commands, thus maintaining a high developer experience.
+The same principle applies to the [dotenv Vault](https://www.dotenv.org/docs/security/env-vault) file in the project root
+with prefix filtering: it is designed to be shared with all applications, centralizing configurations in a single point
+without duplicating them in [Gitlab](https://www.gitlab.com) environment variables or other pipeline systems.
+
+Regarding configurations, instead of replicating information in [Gitlab CI/CD Variables](https://docs.gitlab.com/ee/ci/variables), we created
+[@devmy/dotenv2shell](https://www.npmjs.com/package/@devmy/dotenv2shell) to load [Dotenv Vault](https://www.dotenv.org/docs/security/env-vault) environments into the execution
+shell of GitLab pipelines. This approach enhances the developer experience and promotes centralization of configurations.
