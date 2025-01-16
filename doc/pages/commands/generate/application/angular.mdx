@@ -20,6 +20,42 @@ You can configure the initial application with the following parameters:
 
 ## Advantages
 
+### Environment
+Environment management no longer requires the use of constants like `Environment` and is now handled externally via `.env.vault`. To switch environments, you just need to toggle using `dotenv`. Environment variables can be accessed in the application through `import.meta.env`. For example:
+
+```typescript
+const appName = import.meta.env.APP_NAME; // esempio senza prefisso
+```
+
+Environment variables are filtered at build time using a prefix. If the application is named `FRONTEND` and you want to define the variable `APP_NAME`, it must be declared in the .env file as `FRONTEND_APP_NAME`. All variables without the prefix will be ignored.
+
+⚠️ **WARNING:** Do not reference environment variables directly. This makes your functionality untestable. For example, if a function directly accesses an environment variable, a unit test might fail since the `.env` file may not be available in CI/CD environments, causing compilation errors.
+
+The correct approach depends on the context:
+
+For functions that are not called by services or components and are not involved in tests (including child components of the tested component or functions imported in test files), such as those invoked exclusively in the main, direct access to environment variables can be acceptable.
+For components or services requiring isolated tests, environment variables must be accessed indirectly, for example, using an `InjectionToken` or a provider.
+
+Example implementation using createInjectionToken:
+
+```typescript
+export const [injectAppName, provideAppName] = createInjectionToken(
+  () => import.meta.env.FRONTEND_APP_NAME,
+);
+
+class MyService {
+  appName = injectAppName();
+}
+```
+
+In this case, using a factory within `createInjectionToken` prevents accidental access to `import.meta.env.FRONTEND_APP_NAME.
+If it were implemented as follows:
+
+```typescript
+export const [injectAppName, provideAppName] = createInjectionToken(import.meta.env.FRONTEND_APP_NAME);
+```
+and imported into a component under test, a runtime error would occur. Without a valid `.env` file, `FRONTEND_APP_NAME` would be `undefined`, leading to unexpected issues.
+
 ### Ngrx
 
 The Angular application created with the Devmy CLI comes with [NgRx](https://ngrx.io/) preinstalled and configured,
