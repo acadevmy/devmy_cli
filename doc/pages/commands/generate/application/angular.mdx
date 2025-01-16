@@ -56,6 +56,15 @@ export const [injectAppName, provideAppName] = createInjectionToken(import.meta.
 ```
 and imported into a component under test, a runtime error would occur. Without a valid `.env` file, `FRONTEND_APP_NAME` would be `undefined`, leading to unexpected issues.
 
+In some cases, it is possible to mock the environment directly using:
+
+```typescript
+jest.mock('import.meta.env', () => ({
+FRONTEND_APP_NAME: 'TestApp',
+}));
+```
+However, it is always preferable to use alternative solutions whenever possible.
+
 ### Ngrx
 
 The Angular application created with the Devmy CLI comes with [NgRx](https://ngrx.io/) preinstalled and configured,
