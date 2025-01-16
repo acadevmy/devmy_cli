@@ -24,7 +24,7 @@ You can configure the initial application with the following parameters:
 Environment management no longer requires the use of constants like `Environment` and is now handled externally via `.env.vault`. To switch environments, you just need to toggle using `dotenv`. Environment variables can be accessed in the application through `import.meta.env`. For example:
 
 ```typescript
-const appName = import.meta.env.APP_NAME; // esempio senza prefisso
+const appName = import.meta.env.APP_NAME;
 ```
 
 Environment variables are filtered at build time using a prefix. If the application is named `FRONTEND` and you want to define the variable `APP_NAME`, it must be declared in the .env file as `FRONTEND_APP_NAME`. All variables without the prefix will be ignored.
