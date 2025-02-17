@@ -1,3 +1,10 @@
+# [1.32.0](https://github.com/acadevmy/devmy_cli/compare/v1.31.0...v1.32.0) (2025-02-17)
+
+
+### Features
+
+* **docs:** Update gitlab guide ([f501b13](https://github.com/acadevmy/devmy_cli/commit/f501b1387d3d3876be3e6a3a1c18b549d714c166))
+
 # [1.31.0](https://github.com/acadevmy/devmy_cli/compare/v1.30.0...v1.31.0) (2024-12-02)
 
 
