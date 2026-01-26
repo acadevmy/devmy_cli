@@ -163,7 +163,13 @@ final cliConfiguration = CliConfiguration(
       aliases: ['ng'],
       brick: GitPath("https://github.com/acadevmy/angular_library_brick"),
       description: "Generate an angular library in your workspace",
-    )
+    ),
+    LibraryCommandDefinition(
+      name: 'cms-connector',
+      aliases: ['cms-connector'],
+      brick: GitPath("https://github.com/acadevmy/cms-connector-library-brick"),
+      description: "Generate a cms connector library in your workspace",
+    ),
   ],
   utilities: [
     UtilityCommandDefinition(
