@@ -1,3 +1,10 @@
+# [1.33.0](https://github.com/acadevmy/devmy_cli/compare/v1.32.0...v1.33.0) (2026-01-26)
+
+
+### Features
+
+* add cms-connector library brick ([de2c34a](https://github.com/acadevmy/devmy_cli/commit/de2c34a3841e9612f705ed50f731c7e9c6e20cb7))
+
 # [1.32.0](https://github.com/acadevmy/devmy_cli/compare/v1.31.0...v1.32.0) (2025-02-17)
 
 
