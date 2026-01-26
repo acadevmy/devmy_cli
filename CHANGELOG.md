@@ -1,3 +1,10 @@
+## [1.33.1](https://github.com/acadevmy/devmy_cli/compare/v1.33.0...v1.33.1) (2026-01-26)
+
+
+### Bug Fixes
+
+* update alias for cms-connector command from 'cms-connector' to 'cmsc' ([8624d85](https://github.com/acadevmy/devmy_cli/commit/8624d850a5dc8b45e91f4bcae0c6a8603a6737d5))
+
 # [1.33.0](https://github.com/acadevmy/devmy_cli/compare/v1.32.0...v1.33.0) (2026-01-26)
 
 
