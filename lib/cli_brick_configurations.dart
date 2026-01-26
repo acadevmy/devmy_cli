@@ -166,7 +166,7 @@ final cliConfiguration = CliConfiguration(
     ),
     LibraryCommandDefinition(
       name: 'cms-connector',
-      aliases: ['cms-connector'],
+      aliases: ['cmsc'],
       brick: GitPath("https://github.com/acadevmy/cms-connector-library-brick"),
       description: "Generate a cms connector library in your workspace",
     ),
