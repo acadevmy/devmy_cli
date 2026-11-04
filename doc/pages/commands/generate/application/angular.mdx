@@ -169,13 +169,12 @@ between pages during navigation. This makes interaction with the application smo
 This provider enables view transitions in the Router by executing the route activation and deactivation inside of
 document.startViewTransition.
 
-## Addons
-
 ### TailwindCSS
 
-Both during the creation phase of the Angular application and afterwards, it will be possible to add [TailwindCSS](/commands/generate/addon/angular_tailwind).
+[TailwindCSS](https://tailwindcss.com/) v4 is included out of the box: the application ships with `tailwindcss`, `@tailwindcss/postcss`,
+a `.postcssrc.json` configuration and `@import "tailwindcss";` in `src/styles.css`, so utility classes are ready to use immediately.
 
-The addon will take care of installing the necessary dependencies and initializing the library so that it is ready to use immediately.
+## Addons
 
 ### Vercel
 

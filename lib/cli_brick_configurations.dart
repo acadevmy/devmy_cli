@@ -26,12 +26,6 @@ final cliConfiguration = CliConfiguration(
       questions: [
         Question(
           isOptional: true,
-          prompt:
-              'Which UI component library would you like to integrate into your Angular application?',
-          addonNames: ['angular/tailwind'],
-        ),
-        Question(
-          isOptional: true,
           prompt: 'Would you like to set up a deploy system?',
           addonNames: ['vercel'],
         ),
@@ -125,12 +119,6 @@ final cliConfiguration = CliConfiguration(
           GitPath("https://github.com/acadevmy/next-dynamic-route-addon-brick"),
       description: "Create a dynamic route for your Next.js project",
       fileConflictResolution: FileConflictResolution.append,
-    ),
-    AddonCommandDefinition(
-      name: 'angular/tailwind',
-      brick:
-          GitPath("https://github.com/acadevmy/angular-tailwind-addon-brick"),
-      description: "Integrating TailwindCSS with Angular",
     ),
     AddonCommandDefinition(
       name: 'gitlab',
