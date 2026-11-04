@@ -38,7 +38,7 @@ void main(List<String> arguments) async {
 }
 
 void _resetTerminal() {
-  if (stdin.hasTerminal) {
+  if (hasInteractiveTerminal) {
     reset();
   }
 }

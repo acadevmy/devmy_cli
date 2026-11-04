@@ -132,7 +132,7 @@ class BrickCommand extends Command<void> {
     WorkspaceCommandDefinition brickCommand,
   ) async {
     final workspaceName = _resolveName();
-    final environment = {
+    final Map<String, dynamic> environment = {
       kBrickWorkspaceNameEnvironmentVariable: workspaceName,
     };
     await _preflight(environment);
@@ -140,15 +140,16 @@ class BrickCommand extends Command<void> {
     final Directory workspaceDirectory = Directory.fromUri(
         Directory.current.uri.resolve(workspaceName.paramCase));
     workspaceDirectory.createSync(recursive: true);
-    final context = await _loadBrickContext(brickCommand.brick);
 
-    await _runBrick(
-      workspaceDirectory: workspaceDirectory,
-      targetDirectory: workspaceDirectory,
-      brickContext: context,
-      environment: environment,
-      brickCommand: brickCommand,
-    );
+    await _removeIfLeftEmpty(
+        workspaceDirectory,
+        () async => _runBrick(
+              workspaceDirectory: workspaceDirectory,
+              targetDirectory: workspaceDirectory,
+              brickContext: await _loadBrickContext(brickCommand.brick),
+              environment: environment,
+              brickCommand: brickCommand,
+            ));
 
     await pnpmInstall(workspaceDirectory);
     await initializeGit(workspaceDirectory);
@@ -208,15 +209,16 @@ class BrickCommand extends Command<void> {
         .resolve('$kApplicationBasePath/${applicationName.paramCase}'));
 
     applicationDirectory.createSync(recursive: true);
-    final context = await _loadBrickContext(brickCommand.brick);
 
-    await _runBrick(
-      workspaceDirectory: workspaceDirectory,
-      targetDirectory: applicationDirectory,
-      brickContext: context,
-      environment: environment,
-      brickCommand: brickCommand,
-    );
+    await _removeIfLeftEmpty(
+        applicationDirectory,
+        () async => _runBrick(
+              workspaceDirectory: workspaceDirectory,
+              targetDirectory: applicationDirectory,
+              brickContext: await _loadBrickContext(brickCommand.brick),
+              environment: environment,
+              brickCommand: brickCommand,
+            ));
 
     await pnpmInstall(workspaceDirectory);
     await commitChanges(
@@ -244,15 +246,16 @@ class BrickCommand extends Command<void> {
         .resolve('$kLibraryBasePath/${libraryName.paramCase}'));
 
     libraryDirectory.createSync(recursive: true);
-    final context = await _loadBrickContext(brickCommand.brick);
 
-    await _runBrick(
-      workspaceDirectory: workspaceDirectory,
-      targetDirectory: libraryDirectory,
-      brickContext: context,
-      environment: environment,
-      brickCommand: brickCommand,
-    );
+    await _removeIfLeftEmpty(
+        libraryDirectory,
+        () async => _runBrick(
+              workspaceDirectory: workspaceDirectory,
+              targetDirectory: libraryDirectory,
+              brickContext: await _loadBrickContext(brickCommand.brick),
+              environment: environment,
+              brickCommand: brickCommand,
+            ));
 
     await pnpmInstall(workspaceDirectory);
     await commitChanges(
@@ -300,6 +303,23 @@ class BrickCommand extends Command<void> {
       questions: brickCommand.questions,
       environment: environment,
     );
+  }
+
+  /// Runs [generate] into the [directory] just created for it, and removes
+  /// the directory again if the run fails before writing anything, so a
+  /// failed hook does not leave an empty project behind.
+  Future<void> _removeIfLeftEmpty(
+    Directory directory,
+    Future<void> Function() generate,
+  ) async {
+    try {
+      await generate();
+    } catch (_) {
+      if (directory.existsSync() && directory.listSync().isEmpty) {
+        directory.deleteSync();
+      }
+      rethrow;
+    }
   }
 
   Future<void> _runBrick({
@@ -457,7 +477,7 @@ class BrickCommand extends Command<void> {
     final description = {
       'command': name,
       'description': brickCommand.description,
-      'brick': brickCommand.brick.path,
+      'brick': brickCommand.brick.url,
       if (nameVariable != null) 'nameFlagSets': nameVariable,
       'variables': [
         for (final entry in context.bundle.vars.entries)
@@ -498,8 +518,11 @@ class BrickCommand extends Command<void> {
     }
   }
 
+  String _brickKey(GitPath brickPath) =>
+      '${brickPath.url}#${brickPath.ref ?? ''}:${brickPath.path}';
+
   Future<BrickContext> _loadBrickContext(GitPath brickPath) async {
-    final cached = _brickContexts[brickPath.path];
+    final cached = _brickContexts[_brickKey(brickPath)];
     if (cached != null) {
       return cached;
     }
@@ -512,7 +535,7 @@ class BrickCommand extends Command<void> {
           ).interact()
         : null;
     if (spinner == null && !_inputs.describe) {
-      print('🧱 Loading ${brickPath.path}');
+      print('🧱 Loading ${brickPath.url}');
     }
 
     try {
@@ -527,7 +550,7 @@ class BrickCommand extends Command<void> {
       spinner?.done();
 
       final context = BrickContext(bundle: bundle, generator: generator);
-      _brickContexts[brickPath.path] = context;
+      _brickContexts[_brickKey(brickPath)] = context;
       return context;
     } catch (e) {
       if (spinner != null) {
@@ -721,7 +744,10 @@ class BrickCommand extends Command<void> {
             .whereType<Directory>()
             .toList();
 
-    return [workspaceDirectory, ...libraries, ...applications];
+    return [workspaceDirectory, ...libraries, ...applications]
+        .where((directory) =>
+            File.fromUri(directory.uri.resolve('package.json')).existsSync())
+        .toList();
   }
 
   Directory _resolveTarget(Directory workspaceDirectory) {
