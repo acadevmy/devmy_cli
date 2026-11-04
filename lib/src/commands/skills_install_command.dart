@@ -51,8 +51,8 @@ class SkillsInstallCommand extends Command<void> {
       ..addOption(
         'ref',
         defaultsTo: 'v$packageVersion',
-        help: 'Git ref of the skill installed with npx skills. '
-            'Defaults to the tag of this CLI version.',
+        help: 'Tag or branch (without "/") of the skill installed with npx '
+            'skills. Defaults to the tag of this CLI version.',
       )
       ..addFlag(
         'yes',
