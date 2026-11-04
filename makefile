@@ -9,6 +9,8 @@ compile:
 	dart compile exe -o dist/devmy bin/devmy.dart
 test:
 	dart run test
+skill_reference:
+	dart run tool/generate_skill_reference.dart
 activate:
 	dart pub global activate -s path . --overwrite
 deactivate:

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://code.claude.com/schemas/marketplace.json",
+  "name": "devmy",
+  "description": "Devmy CLI skills for AI coding agents",
+  "owner": {
+    "name": "Devmy",
+    "url": "https://github.com/acadevmy"
+  },
+  "plugins": [
+    {
+      "name": "devmy",
+      "source": "./",
+      "description": "Scaffold and extend Devmy monorepos with the devmy CLI: workspaces, applications, libraries and addons.",
+      "category": "development",
+      "tags": ["scaffolding", "monorepo", "cli"]
+    }
+  ]
+}

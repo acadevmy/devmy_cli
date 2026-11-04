@@ -9,7 +9,7 @@
         [
             "@semantic-release/exec",
             {
-                "prepareCmd": "printf \"// Updated by semantic-release on every release (see .releaserc).\\nconst packageVersion = '%s';\\n\" ${nextRelease.version} > lib/src/version.dart"
+                "prepareCmd": "printf \"// Updated by semantic-release on every release (see .releaserc).\\nconst packageVersion = '%s';\\n\" ${nextRelease.version} > lib/src/version.dart && sed -i \"s/^  cli-version: .*/  cli-version: \\\"${nextRelease.version}\\\"/\" skills/devmy/SKILL.md"
             }
         ],
         "@semantic-release/github",
@@ -25,7 +25,8 @@
                 "assets": [
                     "CHANGELOG.md",
                     "pubspec.yaml",
-                    "lib/src/version.dart"
+                    "lib/src/version.dart",
+                    "skills/devmy/SKILL.md"
                 ],
                 "message": "chore(release): ${nextRelease.version}\n\n${nextRelease.notes}"
             }

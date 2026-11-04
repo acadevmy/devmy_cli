@@ -3,6 +3,7 @@ import 'package:args/command_runner.dart';
 import 'package:devmy_cli/src/commands/brick_command.dart';
 import 'package:devmy_cli/src/commands/docs_command.dart';
 import 'package:devmy_cli/src/commands/node_command.dart';
+import 'package:devmy_cli/src/commands/skills_install_command.dart';
 import 'package:devmy_cli/src/models/models.dart';
 import 'package:devmy_cli/src/version.dart';
 
@@ -55,7 +56,12 @@ class CommandRunnerFactory {
             )
             .toList(),
       ))
-      ..addCommand(_createGenerateSection(configuration));
+      ..addCommand(_createGenerateSection(configuration))
+      ..addCommand(NodeCommand(
+        name: 'skills',
+        description: 'Skills that teach AI coding agents to use devmy',
+        children: [SkillsInstallCommand()],
+      ));
   }
 
   Command<void> _createGenerateSection(CliConfiguration configuration) {
