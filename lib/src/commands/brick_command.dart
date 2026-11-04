@@ -28,10 +28,10 @@ class BrickCommand extends Command<void> {
   String get description => brickCommand.description;
 
   @override
-  String get name => chalk.bold(brickCommand.name);
+  String get name => brickCommand.name;
 
   @override
-  List<String> get aliases => [...brickCommand.aliases, brickCommand.name];
+  List<String> get aliases => brickCommand.aliases;
 
   @override
   Future<void> run() async {

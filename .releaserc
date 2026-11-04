@@ -6,6 +6,12 @@
         "@semantic-release/commit-analyzer",
         "@semantic-release/release-notes-generator",
         "semantic-release-dart",
+        [
+            "@semantic-release/exec",
+            {
+                "prepareCmd": "printf \"// Updated by semantic-release on every release (see .releaserc).\\nconst packageVersion = '%s';\\n\" ${nextRelease.version} > lib/src/version.dart"
+            }
+        ],
         "@semantic-release/github",
         [
             "@semantic-release/changelog",
@@ -18,7 +24,8 @@
             {
                 "assets": [
                     "CHANGELOG.md",
-                    "pubspec.yaml"
+                    "pubspec.yaml",
+                    "lib/src/version.dart"
                 ],
                 "message": "chore(release): ${nextRelease.version}\n\n${nextRelease.notes}"
             }
