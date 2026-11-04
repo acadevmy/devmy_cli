@@ -1,0 +1,8 @@
+{
+  "lint": "dart analyze",
+  "typecheck": null,
+  "test": "dart test",
+  "absent": {
+    "typecheck": "Dart has no separate type checker: dart analyze already reports type errors."
+  }
+}
