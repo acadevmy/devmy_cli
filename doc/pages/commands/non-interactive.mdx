@@ -1,0 +1,56 @@
+# Non-interactive mode
+
+Every command that generates code can run without prompts, for AI agents, CI
+and scripts. Without a terminal this mode turns on by itself; in a terminal
+pass `--no-interactive`.
+
+## Flags
+
+| Flag | Answers |
+| ---- | ---- |
+| `--name <name>` | The workspace, application or library name |
+| `--addon <name>` | An addon question. Repeatable; an omitted addon means "none" |
+| `--var key=value` | A brick variable. Repeatable |
+| `--target <package>` | Where `generate addon` applies, by `package.json` name |
+| `--[no-]interactive` | Prompt for what is missing (default only in a terminal) |
+| `--describe` | Print the brick variables and addon questions as JSON, then exit |
+
+```bash copy
+devmy new --name shop --no-interactive
+cd shop
+devmy generate application nextjs --name web --addon next/zustand --no-interactive
+devmy generate addon angular/tailwind --target backoffice --no-interactive
+```
+
+## Brick variables
+
+Each brick declares its own variables. List them before generating:
+
+```bash copy
+devmy generate application nextjs --describe
+```
+
+Variables with a default can be omitted. When a required one is missing the
+command stops before writing anything and prints the `--var` to add.
+
+## Exit codes
+
+| Code | Meaning |
+| ---- | ---- |
+| `0` | Done |
+| `64` | Wrong or missing input: nothing was generated, stderr says what to add |
+| `1` | Failure while generating |
+
+## Addons with secrets
+
+Some addons ask for tokens in their own scripts. Without a terminal they read
+them from environment variables and stop at once when one is missing:
+
+| Command | Inputs |
+| ---- | ---- |
+| `generate addon vercel` | `VERCEL_TOKEN_STAGING`, `VERCEL_TOKEN_PRODUCTION` |
+| `generate application firebase` | `FIREBASE_TOKEN_DEVELOPMENT`, `FIREBASE_TOKEN_STAGING`, `FIREBASE_TOKEN_CI`, `FIREBASE_TOKEN_PRODUCTION`; optional `--var firebaseProject<Env>=<id>` |
+| `generate addon gitlab` | `--var repositoryBaseUrl=<url>` when the git remote is not a GitLab URL |
+| `generate addon firebase/hosting` | `--var hostingApplications=<names\|all>`, optional `--var overwriteHostings=true` |
+
+Never pass tokens with `--var`: it would leave them in the shell history.

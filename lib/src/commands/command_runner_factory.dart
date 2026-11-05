@@ -1,17 +1,40 @@
+import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
-import 'package:chalkdart/chalkstrings.dart';
 import 'package:devmy_cli/src/commands/brick_command.dart';
 import 'package:devmy_cli/src/commands/docs_command.dart';
 import 'package:devmy_cli/src/commands/node_command.dart';
+import 'package:devmy_cli/src/commands/skills_install_command.dart';
 import 'package:devmy_cli/src/models/models.dart';
+import 'package:devmy_cli/src/version.dart';
+
+class DevmyCommandRunner extends CommandRunner<void> {
+  DevmyCommandRunner()
+      : super(
+          "devmy",
+          "Devmy project CLI for heroes",
+          suggestionDistanceLimit: 3,
+        ) {
+    argParser.addFlag(
+      'version',
+      negatable: false,
+      help: 'Print the installed devmy version.',
+    );
+  }
+
+  @override
+  Future<void> runCommand(ArgResults topLevelResults) async {
+    if (topLevelResults['version'] == true) {
+      print(packageVersion);
+      return;
+    }
+
+    return super.runCommand(topLevelResults);
+  }
+}
 
 class CommandRunnerFactory {
   CommandRunner<void> create(CliConfiguration configuration) {
-    final commandRunner = CommandRunner<void>(
-      "devmy",
-      "Devmy project CLI for heroes",
-      suggestionDistanceLimit: 3,
-    );
+    final commandRunner = DevmyCommandRunner();
 
     return commandRunner
       ..addCommand(DocsCommand())
@@ -33,7 +56,12 @@ class CommandRunnerFactory {
             )
             .toList(),
       ))
-      ..addCommand(_createGenerateSection(configuration));
+      ..addCommand(_createGenerateSection(configuration))
+      ..addCommand(NodeCommand(
+        name: 'skills',
+        description: 'Skills that teach AI coding agents to use devmy',
+        children: [SkillsInstallCommand()],
+      ));
   }
 
   Command<void> _createGenerateSection(CliConfiguration configuration) {
@@ -55,26 +83,25 @@ class CommandRunnerFactory {
         .toList();
 
     return NodeCommand(
-        name: chalk.bold('generate'),
-        aliases: ['g', 'gen', 'generate'],
+        name: 'generate',
+        aliases: ['g', 'gen'],
         description:
             "Generate various components to kickstart your development journey",
         children: [
           NodeCommand(
-            name: chalk.bold('application'),
-            aliases: ['a', 'app', 'application'],
+            name: 'application',
+            aliases: ['a', 'app'],
             description: "Create a workspace application",
             children: applicationCommands,
           ),
           NodeCommand(
-            name: chalk.bold('library'),
-            aliases: ['l', 'lib', 'library'],
+            name: 'library',
+            aliases: ['l', 'lib'],
             description: "Create a workspace shareable library",
             children: libraryCommands,
           ),
           NodeCommand(
-            name: chalk.bold('addon'),
-            aliases: ['addon'],
+            name: 'addon',
             description: "Integrate addons into your projects",
             children: addonCommands,
           ),

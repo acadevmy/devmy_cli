@@ -1,5 +1,7 @@
 {
   "scaffold": "new",
   "docs": "docs",
-  "generate": "generate"
+  "generate": "generate",
+  "non-interactive": "Non-interactive mode",
+  "skills": "skills"
 }

@@ -1,0 +1,11 @@
+{
+  "name": "devmy",
+  "description": "Scaffold and extend Devmy monorepos with the devmy CLI: workspaces, applications, libraries and addons.",
+  "author": {
+    "name": "Devmy",
+    "url": "https://github.com/acadevmy"
+  },
+  "homepage": "https://clidocs-devmy-pillars-projects.vercel.app",
+  "repository": "https://github.com/acadevmy/devmy_cli",
+  "keywords": ["devmy", "scaffolding", "monorepo", "mason", "pnpm", "nx"]
+}

@@ -59,3 +59,38 @@ Future<void> commitChanges(
     print(chalk.yellowBright('⚠️ failed git commit'));
   }
 }
+
+Future<bool> isExecutableAvailable(String executable) async {
+  try {
+    final result = await Process.run('which', [executable]);
+    return result.exitCode == 0;
+  } catch (_) {
+    return false;
+  }
+}
+
+/// Runs [executable] attached to this terminal, so its own prompts work,
+/// and returns its exit code.
+Future<int> runInheritingStdio(
+    String executable, List<String> arguments) async {
+  final process = await Process.start(
+    executable,
+    arguments,
+    mode: ProcessStartMode.inheritStdio,
+  );
+  return process.exitCode;
+}
+
+/// The installed Node.js version as `[major, minor]`, or null without Node.
+Future<List<int>?> nodeVersion() async {
+  try {
+    final result = await Process.run('node', ['--version']);
+    final match = RegExp(r'v(\d+)\.(\d+)').firstMatch(result.stdout.toString());
+    if (result.exitCode != 0 || match == null) {
+      return null;
+    }
+    return [int.parse(match.group(1)!), int.parse(match.group(2)!)];
+  } catch (_) {
+    return null;
+  }
+}

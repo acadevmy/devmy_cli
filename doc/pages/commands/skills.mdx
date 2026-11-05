@@ -1,0 +1,46 @@
+# Skills
+
+Teaches AI coding agents (Claude Code, Codex, Cursor and the others supported by
+[`npx skills`](https://skills.sh)) how to use the Devmy CLI. The `devmy` skill
+describes every command, the non-interactive flags and the addons that need
+secrets.
+
+## Get Started
+
+From the project where the agent works:
+
+```bash copy
+devmy skills install
+```
+
+When both `npx` and `claude` are installed you can choose how to install it:
+
+- **npx skills**: copies the skill for the agents you pick, pinned to the tag of
+  your CLI version so it documents exactly the flags you have. Needs Node.js 22.20 or later.
+- **Claude Code plugin**: registers this repository as a plugin marketplace and
+  enables the `devmy` plugin. It follows the latest skill on `main`.
+- **both**: pick other agents than Claude Code in `npx skills`, or Claude Code
+  loads the skill twice.
+
+## Options
+
+| Option | Description |
+| ---- | ---- |
+| `-g, --global` | Install for your user instead of the current project |
+| `-a, --agent <id>` | Agent for `npx skills`, e.g. `claude-code`, `codex`, `cursor`. Repeatable |
+| `--method npx\|claude\|both` | Skip the question. Without a terminal `npx` is preferred |
+| `--ref <tag>` | Tag or branch (without `/`) of the skill installed with `npx skills` |
+| `-y, --yes` | Skip the confirmations of `npx skills` and `claude` |
+
+## Install by hand
+
+```bash copy
+npx skills add acadevmy/devmy_cli --skill devmy
+```
+
+or, inside Claude Code:
+
+```bash copy
+/plugin marketplace add acadevmy/devmy_cli
+/plugin install devmy@devmy
+```

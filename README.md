@@ -73,3 +73,31 @@ Run the application:
 cd [WORKSPACE_NAME]
 pnpm run dev
 ```
+
+## AI agents
+
+Teach your coding agent (Claude Code, Codex, Cursor, …) to use the CLI:
+
+```bash
+devmy skills install
+```
+
+It installs the `devmy` skill with [`npx skills`](https://skills.sh) (Node.js 22.20+), as a Claude Code plugin, or both. By hand:
+
+```bash
+npx skills add acadevmy/devmy_cli --skill devmy
+```
+
+```bash
+claude plugin marketplace add acadevmy/devmy_cli && claude plugin install devmy@devmy
+```
+
+Agents run commands without a terminal, so every command can take its answers as flags (`--name`, `--addon`, `--var key=value`, `--target`) and `--describe` lists what a brick needs. See the [non-interactive mode](https://clidocs-devmy-pillars-projects.vercel.app/commands/non-interactive) docs.
+
+## Development
+
+```bash
+make install           # dart pub get
+make test              # dart test
+make skill_reference   # regenerate skills/devmy/references/commands.md after changing the commands
+```
